@@ -11,7 +11,7 @@ export const WishListItem = ({ product }) => {
    return (
       <div style={{ border: '1px solid', padding: '1rem', margin: '1rem' }}>
          <h2>{product.name}</h2>
-         <p>{product.price}</p>
+         <p>Rs.{product.price}</p>
          <button onClick={() => handleRemoveWishListItem(product)}>
             Remove
          </button>

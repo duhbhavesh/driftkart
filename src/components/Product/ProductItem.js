@@ -24,7 +24,7 @@ export const ProductItem = ({ product }) => {
          console.log('adding to cart');
          return dispatch({ type: 'ADD_CART_ITEM', payload: product });
       } else {
-         console.log('increase quantity');
+         return dispatch({ type: 'INC_QTY', payload: product });
       }
    };
 
@@ -39,8 +39,12 @@ export const ProductItem = ({ product }) => {
 
    return (
       <div style={{ border: '1px solid', padding: '1rem', margin: '1rem' }}>
+         {/* <img src={product.image} alt='product' /> */}
          <h2>{product.name}</h2>
          <p>Rs.{product.price}</p>
+         {product.inStock && <p>In Stock</p>}
+         {!product.inStock && <p>Out of Stock</p>}
+         {product.fastDelivery ? <p>Fast Delivery</p> : <p>3 days min</p>}
          <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
          <button onClick={() => handleAddToWishList(product)}>
             Add to Wish List
