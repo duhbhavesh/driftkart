@@ -11,3 +11,18 @@ code {
    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
 }
+
+.App {
+   font-family: sans-serif;
+   text-align: center;
+}
+
+h1 {
+   font-size: 1.5rem;
+   border: 1px solid;
+   padding: 0.8rem;
+}
+
+h2 {
+   font-size: 1.2rem;
+}
