@@ -15,7 +15,7 @@ export const ProductList = () => {
       <div>
          <h2>Products</h2>
          <Filter />
-         <div>
+         <div className='row'>
             {filteredData.map((product) => {
                return <ProductItem key={product.id} product={product} />;
             })}

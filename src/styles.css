@@ -1,3 +1,5 @@
+@import url('https://driftcss.netlify.app/css/drift.css');
+
 body {
    margin: 0;
    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
@@ -25,4 +27,67 @@ h1 {
 
 h2 {
    font-size: 1.2rem;
+}
+
+/* Card */
+.row {
+   flex-direction: row;
+   flex-wrap: wrap;
+}
+
+.card {
+   width: 50%;
+   margin-top: 2rem;
+}
+
+.product-card {
+   height: 50%;
+}
+
+.product-details {
+   display: block;
+   text-align: left;
+}
+
+.product-heading {
+   line-height: 1;
+   margin-bottom: 0.5rem;
+}
+
+.product #product-title,
+.product-price .new-price {
+   font-size: 0.7rem;
+}
+
+.product .btn-cart {
+   margin-top: 1rem;
+   font-size: 0.7rem;
+}
+
+@media (min-width: 600px) {
+   .row {
+      flex-wrap: wrap;
+   }
+}
+
+@media (min-width: 768px) {
+   .card {
+      width: 30%;
+   }
+}
+
+@media (min-width: 960px) {
+   .card {
+      margin: 0 auto;
+      width: 18%;
+      margin-top: 2rem;
+   }
+}
+
+@media (min-width: 840px) {
+   .navbar {
+      margin-top: 0;
+      padding-left: 2rem;
+      padding-right: 2rem;
+   }
 }
