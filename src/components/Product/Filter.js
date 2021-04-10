@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useData } from '../../context/DataContext';
 
 export function getSortedData(productList, sortBy) {
@@ -22,55 +23,138 @@ export function getFilteredData(
 export const Filter = () => {
    const { state, dispatch } = useData();
    const { sortBy, showInventory, showFastDelivery } = state;
+   const [sort, showSort] = useState(false);
+   const [filter, showFilter] = useState(false);
+
+   const handleSort = () => showSort(!sort);
+   const handleFilter = () => showFilter(!filter);
+
    return (
       <>
-         <fieldset>
-            <legend>Sort</legend>
-            <label>
-               <input
-                  onClick={() =>
-                     dispatch({ type: 'SORT', payload: 'LOW_TO_HIGH' })
-                  }
-                  name='sort'
-                  type='radio'
-                  checked={sortBy && sortBy === 'LOW_TO_HIGH'}
-               />
-               Low to High
-            </label>
-            <label>
-               <input
-                  onClick={() =>
-                     dispatch({ type: 'SORT', payload: 'HIGH_TO_LOW' })
-                  }
-                  name='sort'
-                  type='radio'
-                  checked={sortBy && sortBy === 'HIGH_TO_LOW'}
-               />
-               High to Low
-            </label>
-         </fieldset>
+         <aside className='filter-md'>
+            <fieldset className='filter'>
+               <legend>Sort</legend>
+               <label>
+                  <input
+                     onClick={() =>
+                        dispatch({ type: 'SORT', payload: 'LOW_TO_HIGH' })
+                     }
+                     name='sort'
+                     type='radio'
+                     checked={sortBy && sortBy === 'LOW_TO_HIGH'}
+                     className='filter-input'
+                  />
+                  Low to High
+               </label>
+               <label>
+                  <input
+                     onClick={() =>
+                        dispatch({ type: 'SORT', payload: 'HIGH_TO_LOW' })
+                     }
+                     name='sort'
+                     type='radio'
+                     checked={sortBy && sortBy === 'HIGH_TO_LOW'}
+                     className='filter-input'
+                  />
+                  High to Low
+               </label>
+            </fieldset>
 
-         <fieldset>
-            <legend>Filter</legend>
-            <label>
-               <input
-                  onClick={() => dispatch({ type: 'TOGGLE_INVENTORY' })}
-                  name='filter'
-                  type='checkbox'
-                  checked={showInventory}
-               />
-               Inlcude Out of Stock
-            </label>
-            <label>
-               <input
-                  onClick={() => dispatch({ type: 'TOGGLE_DELIVERY' })}
-                  name='filter'
-                  type='checkbox'
-                  checked={showFastDelivery}
-               />
-               Fast Delivery
-            </label>
-         </fieldset>
+            <fieldset className='filter'>
+               <legend>Filter</legend>
+               <label>
+                  <input
+                     onClick={() => dispatch({ type: 'TOGGLE_INVENTORY' })}
+                     name='filter'
+                     type='checkbox'
+                     checked={showInventory}
+                     className='filter-input'
+                  />
+                  Inlcude Out of Stock
+               </label>
+               <label>
+                  <input
+                     onClick={() => dispatch({ type: 'TOGGLE_DELIVERY' })}
+                     name='filter'
+                     type='checkbox'
+                     checked={showFastDelivery}
+                     className='filter-input'
+                  />
+                  Fast Delivery
+               </label>
+            </fieldset>
+         </aside>
+         <div className='filter-sm'>
+            <div className='filter-buttons'>
+               <button onClick={handleSort} className='filter-btn'>
+                  Sort
+               </button>
+               <button onClick={handleFilter} className='filter-btn'>
+                  Filter
+               </button>
+            </div>
+            <div className='filter-sm-menu'>
+               <div
+                  className={sort ? 'filter-sm-sort active' : 'filter-sm-sort'}>
+                  <h4 className='filter-sm-menu-title'>
+                     Sort <span onClick={handleSort}>X</span>
+                  </h4>
+                  <label>
+                     <input
+                        onClick={() =>
+                           dispatch({ type: 'SORT', payload: 'LOW_TO_HIGH' })
+                        }
+                        name='sort'
+                        type='radio'
+                        checked={sortBy && sortBy === 'LOW_TO_HIGH'}
+                        className='filter-input'
+                     />
+                     Low to High
+                  </label>
+                  <label>
+                     <input
+                        onClick={() =>
+                           dispatch({ type: 'SORT', payload: 'HIGH_TO_LOW' })
+                        }
+                        name='sort'
+                        type='radio'
+                        checked={sortBy && sortBy === 'HIGH_TO_LOW'}
+                        className='filter-input'
+                     />
+                     High to Low
+                  </label>
+               </div>
+
+               <div
+                  className={
+                     filter ? 'filter-sm-filter active' : 'filter-sm-filter'
+                  }>
+                  <h4 className='filter-sm-menu-title'>
+                     Filter <span onClick={handleFilter}>X</span>
+                  </h4>
+                  <label>
+                     <input
+                        onClick={() => dispatch({ type: 'TOGGLE_INVENTORY' })}
+                        name='filter'
+                        type='checkbox'
+                        checked={showInventory}
+                        className='filter-input'
+                     />
+                     Inlcude Out of Stock
+                  </label>
+                  <label>
+                     <input
+                        onClick={() => dispatch({ type: 'TOGGLE_DELIVERY' })}
+                        name='filter'
+                        type='checkbox'
+                        checked={showFastDelivery}
+                        className='filter-input'
+                     />
+                     Fast Delivery
+                  </label>
+               </div>
+            </div>
+         </div>
       </>
    );
 };

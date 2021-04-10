@@ -12,13 +12,16 @@ export const ProductList = () => {
       showFastDelivery,
    });
    return (
-      <div>
-         <h2>Products</h2>
-         <Filter />
-         <div className='row'>
-            {filteredData.map((product) => {
-               return <ProductItem key={product.id} product={product} />;
-            })}
+      <div className='wrapper'>
+         <div className='wrapper-filter'>
+            <Filter />
+         </div>
+         <div className='wrapper-products'>
+            <div className='row products'>
+               {filteredData.map((product) => {
+                  return <ProductItem key={product.id} product={product} />;
+               })}
+            </div>
          </div>
       </div>
    );

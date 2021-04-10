@@ -1,7 +1,10 @@
+import { useData } from '../../context/DataContext';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export const Header = () => {
+   const { state, dispatch } = useData();
+   const { wishList, cart } = state;
    const [sidebar, setSidebar] = useState(false);
 
    const handleSidebar = () => {
@@ -11,7 +14,7 @@ export const Header = () => {
 
    return (
       <>
-         <div class='container-nav'>
+         <div className='container-nav'>
             <nav class='navbar-sm'>
                <div class='navbar'>
                   <ul class='nav-items'>
@@ -34,6 +37,9 @@ export const Header = () => {
                         <Link to='/wishlist'>
                            <a class='nav-item-link'>
                               <i class='fas fa-heart'></i>
+                              <span class='badge badge-error badge-top'>
+                                 {wishList.length}
+                              </span>
                            </a>
                         </Link>
                      </li>
@@ -41,6 +47,9 @@ export const Header = () => {
                         <Link to='/cart'>
                            <a href='' class='nav-item-link'>
                               <i class='fas fa-shopping-cart'></i>
+                              <span class='badge badge-error badge-top'>
+                                 {cart.length}
+                              </span>
                            </a>
                         </Link>
                      </li>
@@ -110,6 +119,9 @@ export const Header = () => {
                      <Link to='/wishlist'>
                         <a class='nav-item-link'>
                            <i class='fas fa-heart'></i>
+                           <span class='badge badge-error badge-top'>
+                              {wishList.length}
+                           </span>
                         </a>
                      </Link>
                   </li>
@@ -117,6 +129,9 @@ export const Header = () => {
                      <Link to='/cart'>
                         <a class='nav-item-link'>
                            <i class='fas fa-shopping-cart'></i>
+                           <span class='badge badge-error badge-top'>
+                              {cart.length}
+                           </span>
                         </a>
                      </Link>
                   </li>

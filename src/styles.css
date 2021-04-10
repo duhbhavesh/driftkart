@@ -19,20 +19,11 @@ code {
    text-align: center;
 }
 
-h1 {
-   font-size: 1.5rem;
-   border: 1px solid;
-   padding: 0.8rem;
-}
-
-h2 {
-   font-size: 1.2rem;
-}
-
-/* Card */
+/* Product Card */
 .row {
    flex-direction: row;
    flex-wrap: wrap;
+   justify-content: center;
 }
 
 .card {
@@ -64,30 +55,168 @@ h2 {
    font-size: 0.7rem;
 }
 
-@media (min-width: 600px) {
+.navbar-sm {
+   position: fixed;
+   width: 100%;
+   z-index: 10;
+}
+
+.container-nav {
+   padding-bottom: 8rem;
+}
+
+/* Filter */
+
+.filter-sm {
+   display: block;
+}
+
+.filter-md {
+   display: none;
+}
+
+.filter-buttons {
+   position: fixed;
+   bottom: 0;
+   z-index: 10;
+   display: flex;
+   justify-content: center;
+   width: 100%;
+}
+
+.filter-btn {
+   cursor: pointer;
+   width: 50%;
+   padding: 1rem;
+}
+
+.filter-sm-menu {
+   position: relative;
+}
+
+.filter-sm-menu-title {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   font-size: 1rem;
+}
+
+.filter-sm-sort {
+   display: none;
+   position: fixed;
+   bottom: 0;
+   z-index: 15;
+   width: 100%;
+   flex-direction: column;
+   background-color: #fff;
+   text-align: left;
+   padding: 1rem;
+}
+
+.filter-sm-sort.active {
+   display: flex;
+}
+
+.filter-sm-filter {
+   display: none;
+   position: fixed;
+   bottom: 0;
+   z-index: 15;
+   width: 100%;
+   flex-direction: column;
+   background-color: #fff;
+   text-align: left;
+   padding: 1rem;
+}
+
+.filter-sm-filter.active {
+   display: flex;
+}
+
+/*size tab*/
+@media (min-width: 768px) {
    .row {
       flex-wrap: wrap;
    }
-}
-
-@media (min-width: 768px) {
    .card {
       width: 30%;
    }
 }
 
-@media (min-width: 960px) {
-   .card {
-      margin: 0 auto;
-      width: 18%;
-      margin-top: 2rem;
-   }
-}
-
+/*size md*/
 @media (min-width: 840px) {
+   .wrapper {
+      display: flex;
+      position: relative;
+      max-width: 1400px;
+      margin: 0 auto;
+   }
+
+   .wrapper-filter {
+      width: 25%;
+   }
+
    .navbar {
       margin-top: 0;
       padding-left: 2rem;
       padding-right: 2rem;
+   }
+
+   .navbar-md {
+      position: fixed;
+      width: 100%;
+      z-index: 10;
+   }
+
+   .container-nav {
+      padding-bottom: 5rem;
+   }
+
+   /* Product List */
+   .wrapper-products {
+      padding: 1rem;
+      width: 90%;
+   }
+
+   /* Filter Desktop*/
+
+   .filter-md {
+      display: block;
+      margin-top: 4rem;
+      padding: 1rem;
+      width: 100%;
+      position: sticky;
+      top: 4rem;
+      max-height: calc(100vh - 10rem);
+      overflow: auto;
+   }
+
+   .filter {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+   }
+
+   .filter-input {
+      margin-right: 0.2rem;
+   }
+
+   /* Filter sm */
+   .filter-sm {
+      display: none;
+   }
+
+   /* Card */
+   .card {
+      width: 30%;
+   }
+}
+
+/*size lg*/
+@media (min-width: 960px) {
+   .card {
+      margin: 0 auto;
+      width: 25%;
+      margin-top: 2rem;
    }
 }
