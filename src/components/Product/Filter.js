@@ -84,6 +84,7 @@ export const Filter = () => {
                </label>
             </fieldset>
          </aside>
+
          <div className='filter-sm'>
             <div className='filter-buttons'>
                <button onClick={handleSort} className='filter-btn'>

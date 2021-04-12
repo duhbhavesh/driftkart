@@ -6,9 +6,9 @@ export const WishList = () => {
    const { wishList } = state;
 
    return (
-      <div>
-         <h2>Wish List</h2>
-         <div>
+      <div className='container'>
+         <h3 className='title-sec'>Wishlist</h3>
+         <div className='wishlist-wrapper'>
             {wishList.map((product) => (
                <WishListItem key={product.id} product={product} />
             ))}

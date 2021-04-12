@@ -34,6 +34,7 @@ export const ProductItem = ({ product }) => {
          return dispatch({ type: 'ADD_WISHLIST_ITEM', payload: product });
       } else {
          console.log('remove from wishList');
+         return dispatch({ type: 'REMOVE_WISHLIST_ITEM', payload: product });
       }
    };
 

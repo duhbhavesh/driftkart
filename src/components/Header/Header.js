@@ -147,11 +147,10 @@ export const Header = () => {
          </div>
 
          <div
-            onClick={handleSidebar}
+            onClick={() => setSidebar(false)}
             class={
                sidebar ? 'sidebar-overlay active' : 'sidebar-overlay'
             }></div>
-
          <nav class={sidebar ? 'sidebar-nav active' : 'sidebar-nav'}>
             <div class='sidebar-header'>
                <div class='container-sidebar'>
