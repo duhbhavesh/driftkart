@@ -1,4 +1,5 @@
 import { useData } from '../../context/DataContext';
+import './ProductItem.css';
 
 export const ProductItem = ({ product }) => {
    const { state, dispatch } = useData();
@@ -82,21 +83,6 @@ export const ProductItem = ({ product }) => {
                </div>
             </div>
          </div>
-
-         {/* <div style={{ border: '1px solid', padding: '1rem', margin: '1rem' }}>
-            <img src={product.image} alt='product' />
-            <h2>{product.name}</h2>
-            <p>Rs.{product.price}</p>
-            {product.inStock && <p>In Stock</p>}
-            {!product.inStock && <p>Out of Stock</p>}
-            {product.fastDelivery ? <p>Fast Delivery</p> : <p>3 days min</p>}
-            <button onClick={() => handleAddToCart(product)}>
-               Add to Cart
-            </button>
-            <button onClick={() => handleAddToWishList(product)}>
-               Add to Wish List
-            </button>
-         </div> */}
       </>
    );
 };

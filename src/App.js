@@ -1,8 +1,8 @@
+import './styles.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import { ProductList } from './components/Product/ProductList';
 import { WishList } from './components/WishList/WishList';
 import { CartList } from './components/Cart/CartList';
-import './styles.css';
 import { Header } from './components/Header/Header';
 
 const App = () => {

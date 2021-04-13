@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useData } from '../../context/DataContext';
+import './Filter.css';
 
 export function getSortedData(productList, sortBy) {
    if (sortBy && sortBy === 'LOW_TO_HIGH') {

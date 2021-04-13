@@ -8,11 +8,15 @@ export const WishList = () => {
    return (
       <div className='container'>
          <h3 className='title-sec'>Wishlist</h3>
-         <div className='wishlist-wrapper'>
-            {wishList.map((product) => (
-               <WishListItem key={product.id} product={product} />
-            ))}
-         </div>
+         {wishList.length === 0 ? (
+            <h4>Your wishlist is Empty</h4>
+         ) : (
+            <div className='wrapper-wishlist'>
+               {wishList.map((product) => (
+                  <WishListItem key={product.id} product={product} />
+               ))}
+            </div>
+         )}
       </div>
    );
 };

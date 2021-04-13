@@ -1,6 +1,7 @@
 import { useData } from '../../context/DataContext';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import './Header.css';
 
 export const Header = () => {
    const { state, dispatch } = useData();

@@ -1,0 +1,92 @@
+.filter-sm {
+   display: block;
+}
+
+.filter-md {
+   display: none;
+}
+
+.filter-buttons {
+   position: fixed;
+   bottom: 0;
+   z-index: 10;
+   display: flex;
+   justify-content: center;
+   width: 100%;
+}
+
+.filter-btn {
+   cursor: pointer;
+   width: 50%;
+   padding: 1rem;
+}
+
+.filter-sm-menu {
+   position: relative;
+}
+
+.filter-sm-menu-title {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   font-size: 1rem;
+}
+
+.filter-sm-sort {
+   display: none;
+   position: fixed;
+   bottom: 0;
+   z-index: 15;
+   width: 100%;
+   flex-direction: column;
+   background-color: #fff;
+   text-align: left;
+   padding: 1rem;
+}
+
+.filter-sm-sort.active {
+   display: flex;
+}
+
+.filter-sm-filter {
+   display: none;
+   position: fixed;
+   bottom: 0;
+   z-index: 15;
+   width: 100%;
+   flex-direction: column;
+   background-color: #fff;
+   text-align: left;
+   padding: 1rem;
+}
+
+.filter-sm-filter.active {
+   display: flex;
+}
+
+@media (min-width: 840px) {
+   .filter-sm {
+      display: none;
+   }
+
+   .filter-md {
+      display: block;
+      margin-top: 4rem;
+      padding: 1rem;
+      width: 100%;
+      position: sticky;
+      top: 4rem;
+      max-height: calc(100vh - 10rem);
+      overflow: auto;
+   }
+
+   .filter {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+   }
+
+   .filter-input {
+      margin-right: 0.2rem;
+   }
+}

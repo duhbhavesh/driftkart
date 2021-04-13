@@ -1,6 +1,7 @@
 import { ProductItem } from './ProductItem';
 import { useData } from '../../context/DataContext';
 import { getSortedData, getFilteredData, Filter } from './Filter';
+import './ProductList.css';
 
 export const ProductList = () => {
    const { state, dispatch } = useData();

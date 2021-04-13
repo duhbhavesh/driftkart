@@ -1,0 +1,33 @@
+.wrapper-wishlist {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+.wishlist-card {
+   width: 70%;
+}
+
+@media (min-width: 768px) {
+   .wrapper-wishlist {
+      flex-direction: row;
+      flex-wrap: wrap;
+   }
+
+   .wishlist-card {
+      width: 45%;
+      margin: 1rem;
+   }
+}
+
+@media (min-width: 840px) {
+   .wishlist-card {
+      width: 30%;
+   }
+}
+
+@media (min-width: 960px) {
+   .wishlist-card {
+      width: 25%;
+   }
+}

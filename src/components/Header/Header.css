@@ -1,0 +1,31 @@
+.navbar-sm {
+   position: fixed;
+   width: 100%;
+   z-index: 10;
+}
+
+.container-nav {
+   padding-bottom: 8rem;
+}
+
+@media (min-width: 840px) {
+   .sidebar-overlay {
+      display: none;
+   }
+
+   .navbar {
+      margin-top: 0;
+      padding-left: 2rem;
+      padding-right: 2rem;
+   }
+
+   .navbar-md {
+      position: fixed;
+      width: 100%;
+      z-index: 10;
+   }
+
+   .container-nav {
+      padding-bottom: 5rem;
+   }
+}

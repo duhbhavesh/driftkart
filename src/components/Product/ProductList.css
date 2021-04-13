@@ -1,0 +1,10 @@
+@media (min-width: 840px) {
+   .wrapper-products {
+      padding: 1rem;
+      width: 90%;
+   }
+
+   .wrapper-filter {
+      width: 25%;
+   }
+}
