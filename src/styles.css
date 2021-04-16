@@ -1,5 +1,11 @@
 @import url('https://driftcss.netlify.app/css/drift.css');
 
+html,
+body {
+   width: auto !important;
+   overflow-x: hidden !important;
+}
+
 body {
    background: rgba(251, 251, 253, 1);
 }

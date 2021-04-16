@@ -1,9 +1,9 @@
-import { useData } from '../../context/DataContext';
-import { CartItem } from './CartItem';
-import { CartSummary } from './CartSummary';
-import './Cartlist.css';
+import { useData } from '../context/DataContext';
+import { CartItem } from '../components/Cart/CartItem';
+import { CartSummary } from '../components/Cart/CartSummary';
+import './Cart.css';
 
-export const CartList = () => {
+export const Cart = () => {
    const { state, dispatch } = useData();
    const { cart } = state;
 

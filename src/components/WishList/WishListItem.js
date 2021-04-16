@@ -1,5 +1,5 @@
 import { useData } from '../../context/DataContext';
-import './WishList.css';
+import './WishListItem.css';
 
 export const WishListItem = ({ product }) => {
    const { state, dispatch } = useData();

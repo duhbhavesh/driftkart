@@ -1,9 +1,13 @@
-import { ProductItem } from './ProductItem';
-import { useData } from '../../context/DataContext';
-import { getSortedData, getFilteredData, Filter } from './Filter';
-import './ProductList.css';
+import { ProductItem } from '../components/Product/ProductItem';
+import { useData } from '../context/DataContext';
+import {
+   getSortedData,
+   getFilteredData,
+   Filter,
+} from '../components/Product/Filter';
+import './Products.css';
 
-export const ProductList = () => {
+export const Products = () => {
    const { state, dispatch } = useData();
    const { products, sortBy, showInventory, showFastDelivery } = state;
 

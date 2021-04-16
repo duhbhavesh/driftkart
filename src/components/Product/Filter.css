@@ -130,12 +130,12 @@
       text-align: left;
       padding-top: 0.6rem;
       padding-bottom: 0.6rem;
-      border-top: 1px solid #d3d7e1;
+      border-bottom: 1px solid #d3d7e1;
    }
 
    .filter-title {
       text-transform: uppercase;
-      font-weight: 500;
+      font-weight: 600;
       margin-bottom: 0.5rem;
    }
 }

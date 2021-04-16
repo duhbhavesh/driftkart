@@ -1,8 +1,9 @@
 import './styles.css';
-import { Routes, Route, Link } from 'react-router-dom';
-import { ProductList } from './components/Product/ProductList';
-import { WishList } from './components/WishList/WishList';
-import { CartList } from './components/Cart/CartList';
+import { Routes, Route } from 'react-router-dom';
+import { Home } from './pages/Home';
+import { Products } from './pages/Products';
+import { WishList } from './pages/WishList';
+import { Cart } from './pages/Cart';
 import { Header } from './components/Header/Header';
 
 const App = () => {
@@ -10,9 +11,10 @@ const App = () => {
       <div className='App'>
          <Header />
          <Routes>
-            <Route path='/products' element={<ProductList />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/products' element={<Products />} />
             <Route path='/wishlist' element={<WishList />} />
-            <Route path='/cart' element={<CartList />} />
+            <Route path='/cart' element={<Cart />} />
          </Routes>
       </div>
    );

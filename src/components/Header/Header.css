@@ -5,7 +5,7 @@
 }
 
 .container-nav {
-   padding-bottom: 8rem;
+   padding-bottom: 6rem;
 }
 
 @media (min-width: 840px) {
@@ -26,6 +26,6 @@
    }
 
    .container-nav {
-      padding-bottom: 5rem;
+      padding-bottom: 3rem;
    }
 }
