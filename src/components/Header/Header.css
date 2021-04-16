@@ -1,7 +1,7 @@
 .navbar-sm {
    position: fixed;
    width: 100%;
-   z-index: 100;
+   z-index: 15;
 }
 
 .container-nav {
@@ -22,7 +22,7 @@
    .navbar-md {
       position: fixed;
       width: 100%;
-      z-index: 10;
+      z-index: 15;
    }
 
    .container-nav {

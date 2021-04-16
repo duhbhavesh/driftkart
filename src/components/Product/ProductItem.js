@@ -50,14 +50,6 @@ export const ProductItem = ({ product }) => {
                      {product.name}
                   </a>
                </h3>
-               <div className='product-price'>
-                  <p className='new-price'>
-                     ₹{product.price}{' '}
-                     <span className='old-price'>₹ {product.price}</span>
-                  </p>
-               </div>
-            </div>
-            <div className='product-details'>
                <div className='rating'>
                   <span>
                      <i className='fas fa-star'></i>
@@ -65,6 +57,14 @@ export const ProductItem = ({ product }) => {
                   <span>
                      <strong>{product.ratings}.0</strong>/5.0
                   </span>
+               </div>
+            </div>
+            <div className='product-details'>
+               <div className='product-price'>
+                  <p className='new-price'>
+                     ₹{product.price}{' '}
+                     <span className='old-price'>₹ {product.price}</span>
+                  </p>
                </div>
                <div className='cart'>
                   <button

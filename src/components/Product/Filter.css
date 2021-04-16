@@ -101,7 +101,7 @@
 }
 
 .filter-overlay.active {
-   z-index: 10;
+   z-index: 15;
    opacity: 1;
 }
 
