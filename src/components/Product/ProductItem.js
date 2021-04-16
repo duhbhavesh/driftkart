@@ -3,25 +3,13 @@ import './ProductItem.css';
 
 export const ProductItem = ({ product }) => {
    const { state, dispatch } = useData();
+   const { cart, wishList } = state;
 
-   const checkCart = (product) => {
-      const cartArr = state.cart.filter((data) => data.id === product.id);
-      if (cartArr.length === 0) {
-         return true;
-      }
-   };
-
-   const checkWishList = (product) => {
-      const wishListArr = state.wishList.filter(
-         (data) => data.id === product.id,
-      );
-      if (wishListArr.length === 0) {
-         return true;
-      }
-   };
+   const checkCart = cart.filter((item) => item.id === product.id);
+   const checkWishList = wishList.filter((item) => item.id === product.id);
 
    const handleAddToCart = (product) => {
-      if (checkCart(product)) {
+      if (checkCart.length === 0) {
          console.log('adding to cart');
          return dispatch({ type: 'ADD_CART_ITEM', payload: product });
       } else {
@@ -29,8 +17,8 @@ export const ProductItem = ({ product }) => {
       }
    };
 
-   const handleAddToWishList = (product) => {
-      if (checkWishList(product)) {
+   const handleWishList = (product) => {
+      if (checkWishList.length === 0) {
          console.log('adding to wishList');
          return dispatch({ type: 'ADD_WISHLIST_ITEM', payload: product });
       } else {
@@ -41,42 +29,47 @@ export const ProductItem = ({ product }) => {
 
    return (
       <>
-         <div class='card product product-card'>
+         <div className='card product product-card'>
             <button
-               onClick={() => handleAddToWishList(product)}
-               class='btn btn-square btn-circle btn-top-right'
+               onClick={() => handleWishList(product)}
+               className='btn btn-square btn-circle btn-top-right btn-wishlist'
                type='button'>
-               <i class='far fa-heart'></i>
+               <i
+                  className={
+                     checkWishList.length === 0
+                        ? 'fas fa-heart fa-heart-product'
+                        : 'fas fa-heart fa-heart-product active'
+                  }></i>
             </button>
-            <div class='product-image'>
-               <img class='card-img' src={product.image} alt='' />
+            <div className='product-image'>
+               <img className='card-img' src={product.image} alt='' />
             </div>
-            <div class='product-details'>
-               <h3 class='product-heading'>
+            <div className='product-details'>
+               <h3 className='product-heading'>
                   <a id='product-title' href='#'>
                      {product.name}
                   </a>
                </h3>
-               <div class='product-price'>
-                  <p class='new-price'>
+               <div className='product-price'>
+                  <p className='new-price'>
                      ₹{product.price}{' '}
-                     <span class='old-price'>₹ {product.price}</span>
+                     <span className='old-price'>₹ {product.price}</span>
                   </p>
                </div>
             </div>
-            <div class='product-details'>
-               <div class='rating'>
+            <div className='product-details'>
+               <div className='rating'>
                   <span>
-                     <i class='fas fa-star'></i>
+                     <i className='fas fa-star'></i>
                   </span>
                   <span>
-                     <strong>4.5</strong>/5.0
+                     <strong>{product.ratings}.0</strong>/5.0
                   </span>
                </div>
-               <div class='cart'>
+               <div className='cart'>
                   <button
                      onClick={() => handleAddToCart(product)}
-                     class='btn btn-primary btn-cart'
+                     className='btn btn-primary btn-cart'
                      type='button'>
                      Add to Cart
                   </button>

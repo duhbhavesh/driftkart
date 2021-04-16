@@ -15,6 +15,9 @@ export const CartList = () => {
          ) : (
             <div className='wrapper-cart'>
                <div className='wrapper-cart-details'>
+                  <div className='cart-item-length'>
+                     My Cart ({cart.length} items)
+                  </div>
                   {cart.map((product) => {
                      return <CartItem key={product.id} product={product} />;
                   })}

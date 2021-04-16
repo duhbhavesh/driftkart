@@ -5,6 +5,7 @@
    align-items: center;
 }
 .wishlist-card {
+   background-color: rgba(251, 252, 252, 1);
    width: 70%;
 }
 

@@ -1,10 +1,17 @@
 .card {
    width: 50%;
    margin-top: 2rem;
+   background-color: rgba(251, 252, 252, 1);
 }
 
 .product-card {
    height: 50%;
+}
+
+.btn-wishlist {
+   width: 1.4rem;
+   height: 1.4rem;
+   padding: 0;
 }
 
 .product-details {
@@ -27,6 +34,25 @@
    font-size: 0.7rem;
 }
 
+.fa-heart-product {
+   font-size: 0.8rem;
+   color: #d3d7e1;
+}
+
+.fa-heart-product.active {
+   color: #ff4d4f;
+}
+
+.fa-heart-product:hover {
+   color: #ff4d4f;
+}
+
+@media (min-width: 600px) {
+   .fa-star {
+      font-size: 0.8rem;
+   }
+}
+
 @media (min-width: 768px) {
    .card {
       width: 30%;
@@ -36,7 +62,7 @@
 @media (min-width: 960px) {
    .card {
       margin: 0 auto;
-      width: 25%;
+      width: 24%;
       margin-top: 2rem;
    }
 }

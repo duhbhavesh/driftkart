@@ -29,41 +29,41 @@ export const WishListItem = ({ product }) => {
       <div className='wishlist-card product product-card'>
          <button
             onClick={() => handleRemoveWishListItem(product)}
-            class='btn btn-square btn-circle btn-top-right'
+            className='btn btn-square btn-circle btn-top-right'
             type='button'>
             <i class='far fa-trash-alt'></i>
          </button>
-         <div class='product-image'>
-            <img class='card-img' src={product.image} alt='' />
+         <div className='product-image'>
+            <img className='card-img' src={product.image} alt='' />
          </div>
-         <div class='product-details'>
-            <h3 class='product-heading'>
+         <div className='product-details'>
+            <h3 className='product-heading'>
                <a id='product-title' href='#'>
                   {product.name}
                </a>
             </h3>
-            <div class='product-price'>
-               <p class='new-price'>
+            <div className='product-price'>
+               <p className='new-price'>
                   ₹{product.price}{' '}
-                  <span class='old-price'>₹ {product.price}</span>
+                  <span className='old-price'>₹ {product.price}</span>
                </p>
             </div>
          </div>
-         <div class='product-details'>
-            <div class='rating'>
+         <div className='product-details'>
+            <div className='rating'>
                <span>
-                  <i class='fas fa-star'></i>
+                  <i className='fas fa-star'></i>
                </span>
                <span>
                   <strong>4.5</strong>/5.0
                </span>
             </div>
-            <div class='cart'>
+            <div className='cart'>
                <button
                   onClick={() => handleAddToCart(product)}
-                  class='btn btn-primary btn-cart'
+                  className='btn btn-primary btn-cart'
                   type='button'>
-                  Add to Cart
+                  Move to Cart
                </button>
             </div>
          </div>

@@ -36,9 +36,14 @@ export const CartSummary = () => {
                   ₹{getAmount(cart).toFixed(2)}
                </div>
             </div>
-            <div className='cart-summary-checkout'>
-               <button className='btn btn-primary cart-checkout-btn'>
-                  Buy Now
+            <div className='cart-summary-checkout-md'>
+               <button className='btn btn-primary btn-pill cart-checkout-btn'>
+                  Proceed to Checkout &#x276F;
+               </button>
+            </div>
+            <div className='cart-summary-checkout-sm'>
+               <button className='btn btn-primary btn-pill cart-checkout-btn'>
+                  Proceed to Checkout &#x276F;
                </button>
             </div>
          </div>

@@ -18,43 +18,45 @@ export const CartItem = ({ product }) => {
 
    return (
       <>
-         <div class='cart-item'>
-            <figure class='cart-item-figure'>
-               <img class='cart-image' alt='' src={product.image} />
+         <div className='cart-item'>
+            <figure className='cart-item-figure'>
+               <img className='cart-image' alt='' src={product.image} />
             </figure>
-            <div class='cart-item-details'>
-               <div class='cart-item-title'>{product.name}</div>
-               <div class='cart-item-brand'>Brand - {product.brand}</div>
-               <div class='cart-item-quantity'>
+            <div className='cart-item-details'>
+               <div className='cart-item-title'>{product.name}</div>
+               <div className='cart-item-brand'>Brand - {product.brand}</div>
+               <div className='cart-item-quantity'>
                   <button
                      onClick={() => handleDecrementQty(product)}
-                     class='btn cart-item-quantity-dec'>
+                     className='btn btn-square cart-item-quantity-dec'>
                      -
                   </button>
-                  <span class='cart-item-qty'>{product.quantity}</span>
+                  <span className='cart-item-qty'>{product.quantity}</span>
                   <button
                      onClick={() => handleIncrementQty(product)}
-                     class='btn cart-item-quantity-inc'>
+                     className='btn btn-square cart-item-quantity-inc'>
                      +
                   </button>
                </div>
-               <div class='cart-item-btns cart-item-btns-md'>
-                  <button class='btn cart-item-btn'>Move to Wishlist</button>
+               <div className='cart-item-btns cart-item-btns-md'>
                   <button
                      onClick={() => handleRemoveCartItem(product)}
-                     class='btn cart-item-btn'>
+                     className='btn cart-item-btn'>
                      Remove
+                  </button>
+                  <button className='btn cart-item-btn'>
+                     Move to Wishlist
                   </button>
                </div>
             </div>
-            <div class='cart-item-subtotal'>
+            <div className='cart-item-subtotal'>
                ₹<span>{product.quantity * product.price}</span>
             </div>
-            <div class='cart-item-btns cart-item-btns-sm'>
-               <button class='btn cart-item-btn'>Move to Wishlist</button>
+            <div className='cart-item-btns cart-item-btns-sm'>
+               <button className='btn cart-item-btn'>Move to Wishlist</button>
                <button
                   onClick={() => handleRemoveCartItem(product)}
-                  class='btn cart-item-btn'>
+                  className='btn cart-item-btn'>
                   Remove
                </button>
             </div>

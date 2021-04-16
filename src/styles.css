@@ -1,5 +1,9 @@
 @import url('https://driftcss.netlify.app/css/drift.css');
 
+body {
+   background: rgba(251, 251, 253, 1);
+}
+
 .container {
    max-width: 1400px;
 }
