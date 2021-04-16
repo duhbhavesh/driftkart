@@ -1,58 +1,8 @@
 import { createContext, useContext, useReducer } from 'react';
 import faker from 'faker';
+import { DataReducer } from './DataReducer';
 
 export const DataContext = createContext();
-
-const DataReducer = (state, { type, payload }) => {
-   switch (type) {
-      case 'ADD_CART_ITEM':
-         return {
-            ...state,
-            cart: [...state.cart, { ...payload, quantity: 1 }],
-         };
-      case 'REMOVE_CART_ITEM':
-         return {
-            ...state,
-            cart: state.cart.filter((item) => item.id !== payload.id),
-         };
-      case 'INC_QTY':
-         return {
-            ...state,
-            cart: state.cart.map((item) =>
-               item.id === payload.id
-                  ? { ...item, quantity: item.quantity + 1 }
-                  : item,
-            ),
-         };
-      case 'DEC_QTY':
-         return {
-            ...state,
-            cart: state.cart.map((item) =>
-               item.id === payload.id
-                  ? { ...item, quantity: item.quantity - 1 }
-                  : item,
-            ),
-         };
-      case 'ADD_WISHLIST_ITEM':
-         return {
-            ...state,
-            wishList: [...state.wishList, { ...payload, quantity: 1 }],
-         };
-      case 'REMOVE_WISHLIST_ITEM':
-         return {
-            ...state,
-            wishList: state.wishList.filter((item) => item.id !== payload.id),
-         };
-      case 'SORT':
-         return { ...state, sortBy: payload };
-      case 'TOGGLE_INVENTORY':
-         return { ...state, showInventory: !state.showInventory };
-      case 'TOGGLE_DELIVERY':
-         return { ...state, showFastDelivery: !state.showFastDelivery };
-      default:
-         break;
-   }
-};
 
 const products = [...Array(50)].map((item) => ({
    id: faker.random.uuid(),
@@ -86,15 +36,17 @@ const products = [...Array(50)].map((item) => ({
    color: faker.commerce.color(),
 }));
 
+const initialState = {
+   cart: [],
+   wishList: [],
+   products: products,
+   sortBy: null,
+   showInventory: true,
+   showFastDelivery: false,
+};
+
 export const DataProvider = ({ children }) => {
-   const [state, dispatch] = useReducer(DataReducer, {
-      cart: [],
-      wishList: [],
-      products: products,
-      sortBy: null,
-      showInventory: true,
-      showFastDelivery: false,
-   });
+   const [state, dispatch] = useReducer(DataReducer, initialState);
 
    return (
       <DataContext.Provider value={{ state, dispatch }}>

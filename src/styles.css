@@ -7,15 +7,13 @@ body {
 }
 
 body {
-   background: rgba(251, 251, 253, 1);
+   background: hsl(180, 12%, 93%);
+   position: relative;
+   min-height: 100%;
 }
 
 .container {
    max-width: 1400px;
-}
-
-.title-sec {
-   text-align: center;
 }
 
 .row {

@@ -1,10 +1,11 @@
 import './styles.css';
 import { Routes, Route } from 'react-router-dom';
-import { Home } from './pages/Home';
-import { Products } from './pages/Products';
-import { WishList } from './pages/WishList';
-import { Cart } from './pages/Cart';
 import { Header } from './components/Header/Header';
+import { Home } from './pages/Home/Home';
+import { Products } from './pages/Products/Products';
+import { WishList } from './pages/WishList/WishList';
+import { Cart } from './pages/Cart/Cart';
+import { Footer } from './components/Footer/Footer';
 
 const App = () => {
    return (
@@ -16,6 +17,7 @@ const App = () => {
             <Route path='/wishlist' element={<WishList />} />
             <Route path='/cart' element={<Cart />} />
          </Routes>
+         <Footer />
       </div>
    );
 };

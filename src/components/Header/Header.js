@@ -8,7 +8,10 @@ export const Header = () => {
    const { wishList, cart } = state;
    const [sidebar, setSidebar] = useState(false);
 
-   const handleSidebar = () => setSidebar(!sidebar);
+   const handleSidebar = () => {
+      console.log('clicked');
+      setSidebar(!sidebar);
+   };
 
    return (
       <>
@@ -33,7 +36,7 @@ export const Header = () => {
                   <ul className='nav-items'>
                      <li className='nav-item navbar-link'>
                         <Link to='/wishlist'>
-                           <a className='nav-item-link'>
+                           <a href='/wishlist' className='nav-item-link'>
                               <i className='fas fa-heart'></i>
                               <span className='badge badge-error badge-top'>
                                  {wishList.length}
@@ -43,7 +46,7 @@ export const Header = () => {
                      </li>
                      <li className='nav-item navbar-link'>
                         <Link to='/cart'>
-                           <a href='' className='nav-item-link'>
+                           <a href='/cart' className='nav-item-link'>
                               <i className='fas fa-shopping-cart'></i>
                               <span className='badge badge-error badge-top'>
                                  {cart.length}
@@ -52,9 +55,11 @@ export const Header = () => {
                         </Link>
                      </li>
                      <li className='nav-item navbar-link'>
-                        <a className='nav-item-link'>
-                           <i className='fas fa-user'></i>
-                        </a>
+                        <Link to='/'>
+                           <a href='/' className='nav-item-link'>
+                              <i className='fas fa-user'></i>
+                           </a>
+                        </Link>
                      </li>
                   </ul>
                </div>
@@ -75,7 +80,7 @@ export const Header = () => {
                <Link to='/'>
                   <a
                      className='navbar-brand navbar-link nav-item-link'
-                     href='#'>
+                     href='/'>
                      DriftKart
                   </a>
                </Link>
@@ -89,15 +94,15 @@ export const Header = () => {
                      </Link>
                   </li>
                   <li className='nav-item navbar-link'>
-                     <Link to='/sale'>
-                        <a href='#' className='nav-item-link'>
+                     <Link to='/'>
+                        <a href='/' className='nav-item-link'>
                            Sale
                         </a>
                      </Link>
                   </li>
                   <li className='nav-item navbar-link'>
-                     <Link to='/offers'>
-                        <a href='#' className='nav-item-link'>
+                     <Link to='/'>
+                        <a href='/' className='nav-item-link'>
                            Offers
                         </a>
                      </Link>
@@ -117,7 +122,7 @@ export const Header = () => {
                <ul className='nav-items'>
                   <li className='nav-item navbar-link'>
                      <Link to='/wishlist'>
-                        <a className='nav-item-link'>
+                        <a href='/wishlist' className='nav-item-link'>
                            <i className='fas fa-heart'></i>
                            <span className='badge badge-error badge-top'>
                               {wishList.length}
@@ -127,7 +132,7 @@ export const Header = () => {
                   </li>
                   <li className='nav-item navbar-link'>
                      <Link to='/cart'>
-                        <a className='nav-item-link'>
+                        <a href='/cart' className='nav-item-link'>
                            <i className='fas fa-shopping-cart'></i>
                            <span className='badge badge-error badge-top'>
                               {cart.length}
@@ -136,8 +141,8 @@ export const Header = () => {
                      </Link>
                   </li>
                   <li className='nav-item navbar-link'>
-                     <Link to='/profile'>
-                        <a className='nav-item-link'>
+                     <Link to='/'>
+                        <a href='/' className='nav-item-link'>
                            <i className='fas fa-user'></i>
                         </a>
                      </Link>
@@ -156,7 +161,7 @@ export const Header = () => {
                <div className='container-sidebar'>
                   <div className='sidebar-top'>
                      <div className='sidebar-login'>
-                        <a className='btn btn-primary' href='#'>
+                        <a className='btn btn-primary' href='/'>
                            <i className='fas fas-sidebar fas-sidebar-user fa-user'></i>
                            Log In
                         </a>
@@ -178,39 +183,39 @@ export const Header = () => {
             <ul className='sidebar-links'>
                <li>
                   <Link to='/products'>
-                     <a href='#' className='nav-item-link'>
+                     <a href='/products' className='nav-item-link'>
                         <i className='fas fa-list'></i>
                         <span className='sidebar-link'>Products</span>
                      </a>
                   </Link>
                </li>
                <li>
-                  <Link to='/sale'>
-                     <a href='#' className='nav-item-link'>
+                  <Link to='/'>
+                     <a href='/' className='nav-item-link'>
                         <i className='fas fa-shopping-bag'></i>
                         <span className='sidebar-link'>Sale</span>
                      </a>
                   </Link>
                </li>
                <li>
-                  <Link to='/offers'>
-                     <a href='#' className='nav-item-link'>
+                  <Link to='/'>
+                     <a href='/' className='nav-item-link'>
                         <i className='fas fa-receipt'></i>
                         <span className='sidebar-link'>Offers</span>
                      </a>
                   </Link>
                </li>
                <li>
-                  <Link to='/support'>
-                     <a href='#' className='nav-item-link'>
+                  <Link to='/'>
+                     <a href='/' className='nav-item-link'>
                         <i className='fas fa-question'></i>
                         <span className='sidebar-link'>Support</span>
                      </a>
                   </Link>
                </li>
                <li>
-                  <Link to='/contact'>
-                     <a href='#' className='nav-item-link'>
+                  <Link to='/'>
+                     <a href='/' className='nav-item-link'>
                         <i className='fas fa-phone'></i>
                         <span className='sidebar-link'>Contact</span>
                      </a>

@@ -7,6 +7,10 @@
    text-align: center;
    border-radius: 5px;
    background-color: rgba(251, 252, 252, 1);
+   transition: all 400ms ease-in-out;
+}
+
+.cart-item:hover {
    box-shadow: rgb(149 157 165 / 20%) 0px 10px 10px;
 }
 

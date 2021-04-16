@@ -1,10 +1,10 @@
-import { ProductItem } from '../components/Product/ProductItem';
-import { useData } from '../context/DataContext';
+import { ProductItem } from '../../components/Product/ProductItem';
+import { useData } from '../../context/DataContext';
 import {
    getSortedData,
    getFilteredData,
    Filter,
-} from '../components/Product/Filter';
+} from '../../components/Product/Filter';
 import './Products.css';
 
 export const Products = () => {

@@ -1,3 +1,17 @@
+.cart-sec {
+   min-height: 100vh;
+}
+
+.cart-heading,
+.cart-info {
+   margin-top: 2rem;
+   text-align: center;
+}
+
+.cart-info {
+   font-size: 1.3rem;
+}
+
 .wrapper-cart {
    font-size: 0.7rem;
    width: 100%;
@@ -8,7 +22,7 @@
 }
 
 .cart-item-length {
-   font-weight: 500;
+   font-weight: 700;
    padding: 1rem;
 }
 

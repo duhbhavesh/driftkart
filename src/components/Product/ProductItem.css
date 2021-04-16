@@ -1,7 +1,10 @@
 .card {
    width: 50%;
-   margin-top: 2rem;
-   background-color: rgba(251, 252, 252, 1);
+   margin-top: 0;
+   background-color: #fff;
+   border: 1px solid #d3d7e1;
+   border-radius: 0;
+   min-height: 315px;
 }
 
 .product-card {
@@ -20,8 +23,8 @@
 }
 
 .product-heading {
-   line-height: 1;
-   margin-bottom: 0.5rem;
+   line-height: 0.6;
+   margin-bottom: 0.8rem;
 }
 
 .product #product-title,
@@ -56,13 +59,16 @@
 @media (min-width: 768px) {
    .card {
       width: 30%;
+      border: none;
+      margin-top: 2rem;
+      border-radius: 0.6rem;
    }
 }
 
 @media (min-width: 960px) {
    .card {
       margin: 0 auto;
-      width: 24%;
       margin-top: 2rem;
+      width: 24%;
    }
 }
