@@ -1,28 +1,32 @@
 import { useData } from '../../context/DataContext';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import './ProductItem.css';
 
 export const ProductItem = ({ product }) => {
    const { state, dispatch } = useData();
    const { cart, wishList } = state;
+   const navigate = useNavigate();
 
    const checkCart = cart.filter((item) => item.id === product.id);
    const checkWishList = wishList.filter((item) => item.id === product.id);
+   const notifyAdd = (message) => toast.success(message);
+   const notifyRemove = (message) => toast.error(message);
 
    const handleAddToCart = (product) => {
       if (checkCart.length === 0) {
-         console.log('adding to cart');
+         notifyAdd(`${product.name} Added to the Cart`);
          return dispatch({ type: 'ADD_CART_ITEM', payload: product });
       } else {
-         return dispatch({ type: 'INC_QTY', payload: product });
+         navigate('/cart');
       }
    };
-
    const handleWishList = (product) => {
       if (checkWishList.length === 0) {
-         console.log('adding to wishList');
+         notifyAdd(`${product.name} Added to the Wishlist`);
          return dispatch({ type: 'ADD_WISHLIST_ITEM', payload: product });
       } else {
-         console.log('remove from wishList');
+         notifyRemove(`${product.name} Removed from the Wishlist`);
          return dispatch({ type: 'REMOVE_WISHLIST_ITEM', payload: product });
       }
    };
@@ -46,7 +50,7 @@ export const ProductItem = ({ product }) => {
             </div>
             <div className='product-details'>
                <h3 className='product-heading'>
-                  <a id='product-title' href='#'>
+                  <a href='#' id='product-title'>
                      {product.name}
                   </a>
                </h3>
@@ -71,7 +75,7 @@ export const ProductItem = ({ product }) => {
                      onClick={() => handleAddToCart(product)}
                      className='btn btn-primary btn-cart'
                      type='button'>
-                     Add to Cart
+                     {checkCart.length === 0 ? 'Add to Cart' : 'Go to Cart'}
                   </button>
                </div>
             </div>

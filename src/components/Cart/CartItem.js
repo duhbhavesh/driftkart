@@ -1,19 +1,27 @@
 import { useData } from '../../context/DataContext';
+import toast from 'react-hot-toast';
 import './CartItem.css';
 
 export const CartItem = ({ product }) => {
    const { dispatch } = useData();
 
+   const notifyRemove = (message) => toast.error(message);
+   const notifyAdd = (message) => toast.success(message);
+
    const handleIncrementQty = (product) => {
       return dispatch({ type: 'INC_QTY', payload: product });
    };
-
    const handleDecrementQty = (product) => {
       return dispatch({ type: 'DEC_QTY', payload: product });
    };
-
    const handleRemoveCartItem = (product) => {
+      notifyRemove(`${product.name} removed from the Cart`);
       return dispatch({ type: 'REMOVE_CART_ITEM', payload: product });
+   };
+   const handleMovetoWishList = (product) => {
+      notifyAdd(`${product.name} moved to the Wishlist`);
+      dispatch({ type: 'ADD_WISHLIST_ITEM', payload: product });
+      dispatch({ type: 'REMOVE_CART_ITEM', payload: product });
    };
 
    return (
@@ -44,7 +52,9 @@ export const CartItem = ({ product }) => {
                      className='btn cart-item-btn'>
                      Remove
                   </button>
-                  <button className='btn cart-item-btn'>
+                  <button
+                     onClick={() => handleMovetoWishList(product)}
+                     className='btn cart-item-btn'>
                      Move to Wishlist
                   </button>
                </div>

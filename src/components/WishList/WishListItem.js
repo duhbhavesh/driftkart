@@ -1,8 +1,12 @@
 import { useData } from '../../context/DataContext';
+import toast from 'react-hot-toast';
 import './WishListItem.css';
 
 export const WishListItem = ({ product }) => {
    const { state, dispatch } = useData();
+
+   const notifyAdd = (message) => toast.success(message);
+   const notifyRemove = (message) => toast.error(message);
 
    const checkCart = (product) => {
       const cartArr = state.cart.filter((data) => data.id === product.id);
@@ -10,18 +14,15 @@ export const WishListItem = ({ product }) => {
          return true;
       }
    };
-
    const handleAddToCart = (product) => {
       if (checkCart(product)) {
-         console.log('adding to cart');
-         return dispatch({ type: 'ADD_CART_ITEM', payload: product });
-      } else {
-         return dispatch({ type: 'INC_QTY', payload: product });
+         notifyAdd(`${product.name} Added to the Cart`);
+         dispatch({ type: 'ADD_CART_ITEM', payload: product });
+         dispatch({ type: 'REMOVE_WISHLIST_ITEM', payload: product });
       }
    };
-
    const handleRemoveWishListItem = (product) => {
-      console.log('removing');
+      notifyRemove(`${product.name} is Removed from the Wishlist`);
       return dispatch({ type: 'REMOVE_WISHLIST_ITEM', payload: product });
    };
 
