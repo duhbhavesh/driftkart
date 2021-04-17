@@ -63,7 +63,11 @@ export const CartItem = ({ product }) => {
                ₹<span>{product.quantity * product.price}</span>
             </div>
             <div className='cart-item-btns cart-item-btns-sm'>
-               <button className='btn cart-item-btn'>Move to Wishlist</button>
+               <button
+                  onClick={() => handleMovetoWishList(product)}
+                  className='btn cart-item-btn'>
+                  Move to Wishlist
+               </button>
                <button
                   onClick={() => handleRemoveCartItem(product)}
                   className='btn cart-item-btn'>
