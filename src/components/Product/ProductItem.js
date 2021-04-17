@@ -10,6 +10,7 @@ export const ProductItem = ({ product }) => {
 
    const checkCart = cart.filter((item) => item.id === product.id);
    const checkWishList = wishList.filter((item) => item.id === product.id);
+
    const notifyAdd = (message) => toast.success(message);
    const notifyRemove = (message) => toast.error(message);
 
