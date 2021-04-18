@@ -4,11 +4,11 @@ import {
    getSortedData,
    getFilteredData,
    Filter,
-} from '../../components/Product/Filter';
+} from '../../components/Filter/Filter';
 import './Products.css';
 
 export const Products = () => {
-   const { state, dispatch } = useData();
+   const { state } = useData();
    const { products, sortBy, showInventory, showFastDelivery } = state;
 
    const sortedData = getSortedData(products, sortBy);

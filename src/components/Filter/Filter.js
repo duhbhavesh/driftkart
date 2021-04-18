@@ -1,4 +1,3 @@
-import { fi } from 'faker/lib/locales';
 import { useState } from 'react';
 import { useData } from '../../context/DataContext';
 import './Filter.css';
