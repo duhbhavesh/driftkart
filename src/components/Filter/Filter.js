@@ -41,7 +41,7 @@ export const Filter = () => {
                         onClick={() =>
                            dispatch({ type: 'SORT', payload: 'LOW_TO_HIGH' })
                         }
-                        name='sort'
+                        name='sort-md'
                         type='radio'
                         checked={sortBy && sortBy === 'LOW_TO_HIGH'}
                         className='filter-input-radio'
@@ -53,7 +53,7 @@ export const Filter = () => {
                         onClick={() =>
                            dispatch({ type: 'SORT', payload: 'HIGH_TO_LOW' })
                         }
-                        name='sort'
+                        name='sort-md'
                         type='radio'
                         checked={sortBy && sortBy === 'HIGH_TO_LOW'}
                         className='filter-input-radio'
@@ -69,7 +69,7 @@ export const Filter = () => {
                   <div className='filter-input'>
                      <input
                         onClick={() => dispatch({ type: 'TOGGLE_INVENTORY' })}
-                        name='filter'
+                        name='filter-md'
                         type='checkbox'
                         checked={showInventory}
                         className='filter-input-check'
@@ -79,7 +79,7 @@ export const Filter = () => {
                   <div className='filter-input'>
                      <input
                         onClick={() => dispatch({ type: 'TOGGLE_DELIVERY' })}
-                        name='filter'
+                        name='filter-md'
                         type='checkbox'
                         checked={showFastDelivery}
                         className='filter-input-check'
@@ -120,7 +120,7 @@ export const Filter = () => {
                         onClick={() =>
                            dispatch({ type: 'SORT', payload: 'LOW_TO_HIGH' })
                         }
-                        name='sort'
+                        name='sort-sm'
                         type='radio'
                         checked={sortBy && sortBy === 'LOW_TO_HIGH'}
                         className='filter-input-radio'
@@ -132,7 +132,7 @@ export const Filter = () => {
                         onClick={() =>
                            dispatch({ type: 'SORT', payload: 'HIGH_TO_LOW' })
                         }
-                        name='sort'
+                        name='sort-sm'
                         type='radio'
                         checked={sortBy && sortBy === 'HIGH_TO_LOW'}
                         className='filter-input-radio'
@@ -154,7 +154,7 @@ export const Filter = () => {
                   <div className='filter-input-sm'>
                      <input
                         onClick={() => dispatch({ type: 'TOGGLE_INVENTORY' })}
-                        name='filter'
+                        name='filter-sm'
                         type='checkbox'
                         checked={showInventory}
                         className='filter-input-check'
@@ -164,7 +164,7 @@ export const Filter = () => {
                   <div className='filter-input-sm'>
                      <input
                         onClick={() => dispatch({ type: 'TOGGLE_DELIVERY' })}
-                        name='filter'
+                        name='filter-sm'
                         type='checkbox'
                         checked={showFastDelivery}
                         className='filter-input-check'
