@@ -116,7 +116,8 @@
       padding: 1rem;
       width: 100%;
       position: sticky;
-      top: 4rem;
+      position: -webkit-sticky;
+      top: 6rem;
       overflow: auto;
       height: 80vh;
       border-radius: 5px;

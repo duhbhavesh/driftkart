@@ -1,16 +1,17 @@
 import { useData } from '../../context/DataContext';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { DesktopNavDataLeft } from './HeaderData';
 import './Header.css';
+import { Sidebar } from '../Sidebar/Sidebar';
 
 export const Header = () => {
-   const { state, dispatch } = useData();
+   const { state } = useData();
    const { wishList, cart } = state;
-   const [sidebar, setSidebar] = useState(false);
+   const [showSidebar, setShowSidebar] = useState(false);
 
    const handleSidebar = () => {
-      console.log('clicked');
-      setSidebar(!sidebar);
+      setShowSidebar(!showSidebar);
    };
 
    return (
@@ -28,37 +29,31 @@ export const Header = () => {
                         </button>
                      </li>
                      <li className='nav-item navbar-link'>
-                        <a className='navbar-brand nav-item-link' href='/'>
+                        <Link to='/' className='navbar-brand nav-item-link'>
                            DriftKart
-                        </a>
+                        </Link>
                      </li>
                   </ul>
                   <ul className='nav-items'>
                      <li className='nav-item navbar-link'>
-                        <Link to='/wishlist'>
-                           <a href='/wishlist' className='nav-item-link'>
-                              <i className='fas fa-heart'></i>
-                              <span className='badge badge-error badge-top'>
-                                 {wishList.length}
-                              </span>
-                           </a>
+                        <Link to='/wishlist' className='nav-item-link'>
+                           <i className='fas fa-heart'></i>
+                           <span className='badge badge-error badge-top'>
+                              {wishList.length}
+                           </span>
                         </Link>
                      </li>
                      <li className='nav-item navbar-link'>
-                        <Link to='/cart'>
-                           <a href='/cart' className='nav-item-link'>
-                              <i className='fas fa-shopping-cart'></i>
-                              <span className='badge badge-error badge-top'>
-                                 {cart.length}
-                              </span>
-                           </a>
+                        <Link to='/cart' className='nav-item-link'>
+                           <i className='fas fa-shopping-cart'></i>
+                           <span className='badge badge-error badge-top'>
+                              {cart.length}
+                           </span>
                         </Link>
                      </li>
                      <li className='nav-item navbar-link'>
-                        <Link to='/'>
-                           <a href='/' className='nav-item-link'>
-                              <i className='fas fa-user'></i>
-                           </a>
+                        <Link to='/' className='nav-item-link'>
+                           <i className='fas fa-user'></i>
                         </Link>
                      </li>
                   </ul>
@@ -77,37 +72,20 @@ export const Header = () => {
             </nav>
 
             <nav className='navbar navbar-md'>
-               <Link to='/'>
-                  <a
-                     className='navbar-brand navbar-link nav-item-link'
-                     href='/'>
-                     DriftKart
-                  </a>
+               <Link to='/' className='navbar-brand navbar-link nav-item-link'>
+                  DriftKart
                </Link>
 
                <ul className='nav-items'>
-                  <li className='nav-item navbar-link'>
-                     <Link to='/products'>
-                        <a href='#' className='nav-item-link'>
-                           Products
-                        </a>
-                     </Link>
-                  </li>
-                  <li className='nav-item navbar-link'>
-                     <Link to='/'>
-                        <a href='/' className='nav-item-link'>
-                           Sale
-                        </a>
-                     </Link>
-                  </li>
-                  <li className='nav-item navbar-link'>
-                     <Link to='/'>
-                        <a href='/' className='nav-item-link'>
-                           Offers
-                        </a>
-                     </Link>
-                  </li>
+                  {DesktopNavDataLeft.map((item) => (
+                     <li key={item.index} className='nav-item navbar-link'>
+                        <Link to={item.link} className='nav-item-link'>
+                           {item.name}
+                        </Link>
+                     </li>
+                  ))}
                </ul>
+
                <form className='form-inline'>
                   <input
                      className='input-box form-control'
@@ -121,108 +99,35 @@ export const Header = () => {
                </form>
                <ul className='nav-items'>
                   <li className='nav-item navbar-link'>
-                     <Link to='/wishlist'>
-                        <a href='/wishlist' className='nav-item-link'>
-                           <i className='fas fa-heart'></i>
-                           <span className='badge badge-error badge-top'>
-                              {wishList.length}
-                           </span>
-                        </a>
+                     <Link to='/wishlist' className='nav-item-link'>
+                        <i className='fas fa-heart'></i>
+                        <span className='badge badge-error badge-top'>
+                           {wishList.length}
+                        </span>
                      </Link>
                   </li>
                   <li className='nav-item navbar-link'>
-                     <Link to='/cart'>
-                        <a href='/cart' className='nav-item-link'>
-                           <i className='fas fa-shopping-cart'></i>
-                           <span className='badge badge-error badge-top'>
-                              {cart.length}
-                           </span>
-                        </a>
+                     <Link to='/cart' className='nav-item-link'>
+                        <i className='fas fa-shopping-cart'></i>
+                        <span className='badge badge-error badge-top'>
+                           {cart.length}
+                        </span>
                      </Link>
                   </li>
                   <li className='nav-item navbar-link'>
-                     <Link to='/'>
-                        <a href='/' className='nav-item-link'>
-                           <i className='fas fa-user'></i>
-                        </a>
+                     <Link to='/' className='nav-item-link'>
+                        <i className='fas fa-user'></i>
                      </Link>
                   </li>
                </ul>
             </nav>
+
+            {/* Mobile Sidebar */}
+            <Sidebar
+               showSidebar={showSidebar}
+               setShowSidebar={setShowSidebar}
+            />
          </div>
-
-         <div
-            onClick={() => setSidebar(false)}
-            className={
-               sidebar ? 'sidebar-overlay active' : 'sidebar-overlay'
-            }></div>
-         <nav className={sidebar ? 'sidebar-nav active' : 'sidebar-nav'}>
-            <div className='sidebar-header'>
-               <div className='container-sidebar'>
-                  <div className='sidebar-top'>
-                     <div className='sidebar-login'>
-                        <a className='btn btn-primary' href='/'>
-                           <i className='fas fas-sidebar fas-sidebar-user fa-user'></i>
-                           Log In
-                        </a>
-                     </div>
-
-                     <div className='sidebar-close'>
-                        <button
-                           onClick={handleSidebar}
-                           type='button'
-                           id='sidebarCollapseX'
-                           className='btn btn-link btn-close'>
-                           <i className='fas fa-times'></i>
-                        </button>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            <ul className='sidebar-links'>
-               <li>
-                  <Link to='/products'>
-                     <a href='/products' className='nav-item-link'>
-                        <i className='fas fa-list'></i>
-                        <span className='sidebar-link'>Products</span>
-                     </a>
-                  </Link>
-               </li>
-               <li>
-                  <Link to='/'>
-                     <a href='/' className='nav-item-link'>
-                        <i className='fas fa-shopping-bag'></i>
-                        <span className='sidebar-link'>Sale</span>
-                     </a>
-                  </Link>
-               </li>
-               <li>
-                  <Link to='/'>
-                     <a href='/' className='nav-item-link'>
-                        <i className='fas fa-receipt'></i>
-                        <span className='sidebar-link'>Offers</span>
-                     </a>
-                  </Link>
-               </li>
-               <li>
-                  <Link to='/'>
-                     <a href='/' className='nav-item-link'>
-                        <i className='fas fa-question'></i>
-                        <span className='sidebar-link'>Support</span>
-                     </a>
-                  </Link>
-               </li>
-               <li>
-                  <Link to='/'>
-                     <a href='/' className='nav-item-link'>
-                        <i className='fas fa-phone'></i>
-                        <span className='sidebar-link'>Contact</span>
-                     </a>
-                  </Link>
-               </li>
-            </ul>
-         </nav>
       </>
    );
 };

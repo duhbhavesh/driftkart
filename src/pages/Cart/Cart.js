@@ -4,7 +4,7 @@ import { CartSummary } from '../../components/Cart/CartSummary';
 import './Cart.css';
 
 export const Cart = () => {
-   const { state, dispatch } = useData();
+   const { state } = useData();
    const { cart } = state;
 
    return (

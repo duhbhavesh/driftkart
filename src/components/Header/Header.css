@@ -4,8 +4,22 @@
    z-index: 15;
 }
 
+.badge-top {
+   top: -0.4rem;
+   width: 0.9rem;
+   height: 0.9rem;
+}
+
 .container-nav {
    padding-bottom: 6rem;
+}
+
+@media (min-width: 640px) {
+   .badge-top {
+      top: -0.6rem;
+      width: 1rem;
+      height: 1rem;
+   }
 }
 
 @media (min-width: 840px) {

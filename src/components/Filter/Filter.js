@@ -43,7 +43,7 @@ export const Filter = () => {
                         }
                         name='sort-md'
                         type='radio'
-                        checked={sortBy && sortBy === 'LOW_TO_HIGH'}
+                        defaultChecked={sortBy && sortBy === 'LOW_TO_HIGH'}
                         className='filter-input-radio'
                      />
                      Price - Low to High
@@ -55,7 +55,7 @@ export const Filter = () => {
                         }
                         name='sort-md'
                         type='radio'
-                        checked={sortBy && sortBy === 'HIGH_TO_LOW'}
+                        defaultChecked={sortBy && sortBy === 'HIGH_TO_LOW'}
                         className='filter-input-radio'
                      />
                      Price - High to Low
@@ -71,7 +71,7 @@ export const Filter = () => {
                         onClick={() => dispatch({ type: 'TOGGLE_INVENTORY' })}
                         name='filter-md'
                         type='checkbox'
-                        checked={showInventory}
+                        defaultChecked={showInventory}
                         className='filter-input-check'
                      />
                      Inlcude Out of Stock
@@ -81,7 +81,7 @@ export const Filter = () => {
                         onClick={() => dispatch({ type: 'TOGGLE_DELIVERY' })}
                         name='filter-md'
                         type='checkbox'
-                        checked={showFastDelivery}
+                        defaultChecked={showFastDelivery}
                         className='filter-input-check'
                      />
                      Fast Delivery
@@ -100,10 +100,10 @@ export const Filter = () => {
                }></div>
             <div className='filter-buttons'>
                <button onClick={handleSort} className='filter-btn'>
-                  <i class='fas fa-sort'></i> Sort
+                  <i className='fas fa-sort'></i> Sort
                </button>
                <button onClick={handleFilter} className='filter-btn'>
-                  <i class='fas fa-filter'></i> Filter
+                  <i className='fas fa-filter'></i> Filter
                </button>
             </div>
             <div className='filter-sm-menu'>
@@ -112,7 +112,7 @@ export const Filter = () => {
                   <p className='filter-sm-menu-title'>
                      Sort By
                      <span onClick={handleSort}>
-                        <i class='fas fa-times'></i>
+                        <i className='fas fa-times'></i>
                      </span>
                   </p>
                   <div className='filter-input-sm'>
@@ -122,7 +122,7 @@ export const Filter = () => {
                         }
                         name='sort-sm'
                         type='radio'
-                        checked={sortBy && sortBy === 'LOW_TO_HIGH'}
+                        defaultChecked={sortBy && sortBy === 'LOW_TO_HIGH'}
                         className='filter-input-radio'
                      />
                      Price - Low to High
@@ -134,7 +134,7 @@ export const Filter = () => {
                         }
                         name='sort-sm'
                         type='radio'
-                        checked={sortBy && sortBy === 'HIGH_TO_LOW'}
+                        defaultChecked={sortBy && sortBy === 'HIGH_TO_LOW'}
                         className='filter-input-radio'
                      />
                      Price - High to Low
@@ -148,7 +148,7 @@ export const Filter = () => {
                   <p className='filter-sm-menu-title'>
                      Filter
                      <span onClick={handleFilter}>
-                        <i class='fas fa-times'></i>
+                        <i className='fas fa-times'></i>
                      </span>
                   </p>
                   <div className='filter-input-sm'>
@@ -156,7 +156,7 @@ export const Filter = () => {
                         onClick={() => dispatch({ type: 'TOGGLE_INVENTORY' })}
                         name='filter-sm'
                         type='checkbox'
-                        checked={showInventory}
+                        defaultChecked={showInventory}
                         className='filter-input-check'
                      />
                      Inlcude Out of Stock
@@ -166,7 +166,7 @@ export const Filter = () => {
                         onClick={() => dispatch({ type: 'TOGGLE_DELIVERY' })}
                         name='filter-sm'
                         type='checkbox'
-                        checked={showFastDelivery}
+                        defaultChecked={showFastDelivery}
                         className='filter-input-check'
                      />
                      Fast Delivery

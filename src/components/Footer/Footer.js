@@ -23,7 +23,7 @@ export const Footer = () => {
                         target='_blank'
                         rel='noreferrer'
                         href='https://github.com/duhbhavesh'>
-                        <i class='fab fa-github'></i>
+                        <i className='fab fa-github'></i>
                      </a>
                   </div>
                   <div>
@@ -32,7 +32,7 @@ export const Footer = () => {
                         target='_blank'
                         rel='noreferrer'
                         href='https://twitter.com/duhbhavesh'>
-                        <i class='fab fa-twitter'></i>
+                        <i className='fab fa-twitter'></i>
                      </a>
                   </div>
                   <div>
@@ -41,7 +41,7 @@ export const Footer = () => {
                         target='_blank'
                         rel='noreferrer'
                         href='https://www.linkedin.com/in/bhavesh-kasturi/'>
-                        <i class='fab fa-linkedin'></i>
+                        <i className='fab fa-linkedin'></i>
                      </a>
                   </div>
                </div>

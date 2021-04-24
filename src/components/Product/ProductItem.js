@@ -1,5 +1,5 @@
 import { useData } from '../../context/DataContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import './ProductItem.css';
 
@@ -51,9 +51,9 @@ export const ProductItem = ({ product }) => {
             </div>
             <div className='product-details'>
                <h3 className='product-heading'>
-                  <a href='#' id='product-title'>
+                  <Link to='#' id='product-title'>
                      {product.name}
-                  </a>
+                  </Link>
                </h3>
                <div className='rating'>
                   <span>

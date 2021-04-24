@@ -3,7 +3,7 @@ import { WishListItem } from '../../components/WishList/WishListItem';
 import './WishList.css';
 
 export const WishList = () => {
-   const { state, dispatch } = useData();
+   const { state } = useData();
    const { wishList } = state;
 
    return (

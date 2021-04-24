@@ -11,7 +11,7 @@ export const Home = () => {
          <section className='categories'>
             {HomeCategories.map(({ label, img, link }) => {
                return (
-                  <Link to={link}>
+                  <Link key={label} to={link}>
                      <div className='category-card' key={label}>
                         <div className='category-heading'>
                            <h3 className='category-title'>{label}</h3>

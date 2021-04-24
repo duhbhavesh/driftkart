@@ -63,7 +63,8 @@
       padding: 1rem;
       width: 100%;
       position: sticky;
-      top: 4rem;
+      top: 8rem;
+      margin-top: 4rem;
       height: 60vh;
       overflow: auto;
    }

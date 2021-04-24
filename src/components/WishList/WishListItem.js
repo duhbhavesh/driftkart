@@ -1,6 +1,7 @@
 import { useData } from '../../context/DataContext';
 import toast from 'react-hot-toast';
 import './WishListItem.css';
+import { Link } from 'react-router-dom';
 
 export const WishListItem = ({ product }) => {
    const { state, dispatch } = useData();
@@ -32,16 +33,16 @@ export const WishListItem = ({ product }) => {
             onClick={() => handleRemoveWishListItem(product)}
             className='btn btn-square btn-circle btn-top-right'
             type='button'>
-            <i class='far fa-trash-alt'></i>
+            <i className='far fa-trash-alt'></i>
          </button>
          <div className='product-image'>
             <img className='card-img' src={product.image} alt='' />
          </div>
          <div className='product-details'>
             <h3 className='product-heading'>
-               <a id='product-title' href='#'>
+               <Link to='#' id='product-title'>
                   {product.name}
-               </a>
+               </Link>
             </h3>
             <div className='product-price'>
                <p className='new-price'>
