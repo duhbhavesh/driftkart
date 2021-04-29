@@ -1,12 +1,10 @@
 import { useData } from '../../context/DataContext';
-import toast from 'react-hot-toast';
+import { RemoveCartItemButton } from '../Buttons/RemoveCartItemButton';
+import { MoveToWishListButton } from '../Buttons/MoveToWishListButton';
 import './CartItem.css';
 
 export const CartItem = ({ product }) => {
    const { dispatch } = useData();
-
-   const notifyRemove = (message) => toast.error(message);
-   const notifyAdd = (message) => toast.success(message);
 
    const handleIncrementQty = (product) => {
       return dispatch({ type: 'INC_QTY', payload: product });
@@ -14,16 +12,6 @@ export const CartItem = ({ product }) => {
    const handleDecrementQty = (product) => {
       return dispatch({ type: 'DEC_QTY', payload: product });
    };
-   const handleRemoveCartItem = (product) => {
-      notifyRemove(`${product.name} removed from the Cart`);
-      return dispatch({ type: 'REMOVE_CART_ITEM', payload: product });
-   };
-   const handleMovetoWishList = (product) => {
-      notifyAdd(`${product.name} moved to the Wishlist`);
-      dispatch({ type: 'ADD_WISHLIST_ITEM', payload: product });
-      dispatch({ type: 'REMOVE_CART_ITEM', payload: product });
-   };
-
    return (
       <>
          <div className='cart-item'>
@@ -47,32 +35,16 @@ export const CartItem = ({ product }) => {
                   </button>
                </div>
                <div className='cart-item-btns cart-item-btns-md'>
-                  <button
-                     onClick={() => handleRemoveCartItem(product)}
-                     className='btn cart-item-btn'>
-                     Remove
-                  </button>
-                  <button
-                     onClick={() => handleMovetoWishList(product)}
-                     className='btn cart-item-btn'>
-                     Move to Wishlist
-                  </button>
+                  <RemoveCartItemButton product={product} />
+                  <MoveToWishListButton product={product} />
                </div>
             </div>
             <div className='cart-item-subtotal'>
                ₹<span>{product.quantity * product.price}</span>
             </div>
             <div className='cart-item-btns cart-item-btns-sm'>
-               <button
-                  onClick={() => handleMovetoWishList(product)}
-                  className='btn cart-item-btn'>
-                  Move to Wishlist
-               </button>
-               <button
-                  onClick={() => handleRemoveCartItem(product)}
-                  className='btn cart-item-btn'>
-                  Remove
-               </button>
+               <MoveToWishListButton product={product} />
+               <RemoveCartItemButton product={product} />
             </div>
          </div>
       </>

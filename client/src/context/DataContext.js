@@ -1,5 +1,3 @@
-import data from '../data';
-
 import { createContext, useContext, useReducer } from 'react';
 import { DataReducer } from './DataReducer';
 
@@ -8,7 +6,7 @@ export const DataContext = createContext();
 const initialState = {
    cart: [],
    wishList: [],
-   products: data,
+   products: [],
    sortBy: null,
    showInventory: true,
    showFastDelivery: false,
