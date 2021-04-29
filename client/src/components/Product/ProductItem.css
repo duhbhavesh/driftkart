@@ -38,15 +38,11 @@
 }
 
 .fa-heart-product {
-   font-size: 0.8rem;
-   color: #d3d7e1;
-}
-
-.fa-heart-product.active {
    color: #ff4d4f;
 }
 
-.fa-heart-product:hover {
+.fa-heart-product.active {
+   font-size: 0.8rem;
    color: #ff4d4f;
 }
 

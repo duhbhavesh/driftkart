@@ -7,8 +7,58 @@ import { Products } from './pages/Products/Products';
 import { WishList } from './pages/WishList/WishList';
 import { Cart } from './pages/Cart/Cart';
 import { Footer } from './components/Footer/Footer';
+import { handleFetchProducts } from './utils/serverRequest';
+import { useData } from './context/DataContext';
+import { useEffect } from 'react';
 
 const App = () => {
+   const { dispatch } = useData();
+
+   useEffect(() => {
+      (async () => {
+         try {
+            const {
+               data: { products },
+            } = await handleFetchProducts(
+               'https://driftkart-backend.duhbhavesh.repl.co/products',
+            );
+            dispatch({ type: 'SET_PRODUCTS', payload: products });
+         } catch (error) {
+            console.log(error);
+         }
+      })();
+   }, [dispatch]);
+
+   useEffect(() => {
+      (async () => {
+         try {
+            const {
+               data: { wishList },
+            } = await handleFetchProducts(
+               'https://driftkart-backend.duhbhavesh.repl.co/wishlist',
+            );
+            dispatch({ type: 'SET_WISHLIST', payload: wishList });
+         } catch (error) {
+            console.log(error);
+         }
+      })();
+   }, [dispatch]);
+
+   useEffect(() => {
+      (async () => {
+         try {
+            const {
+               data: { cart },
+            } = await handleFetchProducts(
+               'https://driftkart-backend.duhbhavesh.repl.co/cart',
+            );
+            dispatch({ type: 'SET_CART', payload: cart });
+         } catch (error) {
+            console.log(error);
+         }
+      })();
+   }, [dispatch]);
+
    return (
       <div className='App'>
          <Header />

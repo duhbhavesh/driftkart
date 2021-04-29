@@ -1,40 +1,12 @@
-import { useData } from '../../context/DataContext';
-import toast from 'react-hot-toast';
-import './WishListItem.css';
 import { Link } from 'react-router-dom';
+import { RemoveWishlistButton } from '../Buttons/RemoveWishListButton';
+import { MoveToCartButton } from '../Buttons/MoveToCartButton';
+import './WishListItem.css';
 
 export const WishListItem = ({ product }) => {
-   const { state, dispatch } = useData();
-
-   const notifyAdd = (message) => toast.success(message);
-   const notifyRemove = (message) => toast.error(message);
-
-   const checkCart = (product) => {
-      const cartArr = state.cart.filter((data) => data.id === product.id);
-      if (cartArr.length === 0) {
-         return true;
-      }
-   };
-   const handleAddToCart = (product) => {
-      if (checkCart(product)) {
-         notifyAdd(`${product.name} Added to the Cart`);
-         dispatch({ type: 'ADD_CART_ITEM', payload: product });
-         dispatch({ type: 'REMOVE_WISHLIST_ITEM', payload: product });
-      }
-   };
-   const handleRemoveWishListItem = (product) => {
-      notifyRemove(`${product.name} is Removed from the Wishlist`);
-      return dispatch({ type: 'REMOVE_WISHLIST_ITEM', payload: product });
-   };
-
    return (
       <div className='wishlist-card product product-card'>
-         <button
-            onClick={() => handleRemoveWishListItem(product)}
-            className='btn btn-square btn-circle btn-top-right'
-            type='button'>
-            <i className='far fa-trash-alt'></i>
-         </button>
+         <RemoveWishlistButton product={product} />
          <div className='product-image'>
             <img className='card-img' src={product.image} alt='' />
          </div>
@@ -61,12 +33,7 @@ export const WishListItem = ({ product }) => {
                </span>
             </div>
             <div className='cart'>
-               <button
-                  onClick={() => handleAddToCart(product)}
-                  className='btn btn-primary btn-cart'
-                  type='button'>
-                  Move to Cart
-               </button>
+               <MoveToCartButton product={product} />
             </div>
          </div>
       </div>
