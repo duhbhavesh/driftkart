@@ -21,7 +21,7 @@ export const DataReducer = (state, { type, payload }) => {
             cart: state.cart.filter((item) => item.id !== payload.id),
          };
 
-      case 'INC_QTY':
+      case 'INCREASE_QUANTITY':
          return {
             ...state,
             cart: state.cart.map((item) =>
@@ -31,7 +31,7 @@ export const DataReducer = (state, { type, payload }) => {
             ),
          };
 
-      case 'DEC_QTY':
+      case 'DECREASE_QUANTITY':
          return {
             ...state,
             cart: state.cart.map((item) =>
