@@ -42,7 +42,7 @@
    background: #fff;
    border-top: 1px solid #d3d7e1;
    margin-top: 1rem;
-   z-index: 100;
+   z-index: 10;
 }
 
 .cart-summary-checkout-md {

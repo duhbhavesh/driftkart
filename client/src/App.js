@@ -28,9 +28,7 @@ const App = () => {
             console.log(error);
          }
       })();
-   }, [dispatch]);
 
-   useEffect(() => {
       (async () => {
          try {
             const {
@@ -43,9 +41,7 @@ const App = () => {
             console.log(error);
          }
       })();
-   }, [dispatch]);
 
-   useEffect(() => {
       (async () => {
          try {
             const {

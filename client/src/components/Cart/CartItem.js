@@ -7,10 +7,10 @@ export const CartItem = ({ product }) => {
    const { dispatch } = useData();
 
    const handleIncrementQty = (product) => {
-      return dispatch({ type: 'INC_QTY', payload: product });
+      return dispatch({ type: 'INCREASE_QUANTITY', payload: product });
    };
    const handleDecrementQty = (product) => {
-      return dispatch({ type: 'DEC_QTY', payload: product });
+      return dispatch({ type: 'DECREASE_QUANTITY', payload: product });
    };
    return (
       <>
@@ -24,6 +24,7 @@ export const CartItem = ({ product }) => {
                <div className='cart-item-quantity'>
                   <button
                      onClick={() => handleDecrementQty(product)}
+                     disabled={product.quantity < 1}
                      className='btn btn-square cart-item-quantity-dec'>
                      -
                   </button>
