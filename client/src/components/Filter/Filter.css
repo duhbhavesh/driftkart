@@ -1,0 +1,142 @@
+.filter-sm-menu {
+   position: relative;
+}
+
+.filter-sm-menu-title {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   font-size: 1rem;
+   text-transform: uppercase;
+   font-weight: 600;
+   margin-bottom: 1rem;
+}
+
+.filter-sm-sort {
+   display: none;
+   position: fixed;
+   bottom: 0;
+   z-index: 15;
+   width: 100%;
+   flex-direction: column;
+   background-color: rgba(253, 253, 254, 1);
+   text-align: left;
+   padding: 1rem;
+}
+
+.filter-sm-sort.active {
+   display: flex;
+}
+
+.filter-sm-filter {
+   display: none;
+   position: fixed;
+   bottom: 0;
+   z-index: 15;
+   width: 100%;
+   flex-direction: column;
+   background-color: rgba(253, 253, 254, 1);
+   text-align: left;
+   padding: 1rem;
+}
+
+.filter-sm-filter.active {
+   display: flex;
+}
+
+.filter-sm {
+   display: block;
+   position: relative;
+}
+
+.filter-md {
+   display: none;
+}
+
+.filter-buttons {
+   position: fixed;
+   bottom: 0;
+   margin: 0;
+   z-index: 10;
+   display: flex;
+   justify-content: center;
+   width: 100%;
+}
+
+.filter-btn {
+   cursor: pointer;
+   width: 50%;
+   padding: 0.8rem;
+   border: 1px solid #d3d7e1;
+   color: #545e7a;
+   text-transform: uppercase;
+   font-weight: 600;
+   background-color: #fff;
+}
+
+.fa-times {
+   cursor: pointer;
+}
+
+.filter-input-sm {
+   border-bottom: 1px solid #d3d7e1;
+   padding-top: 0.4rem;
+   padding-bottom: 0.4rem;
+}
+
+.filter-input-radio,
+.filter-input-check {
+   margin-right: 0.2rem;
+}
+
+.filter-overlay {
+   background: rgba(0, 0, 0, 0.7);
+   height: 100vh;
+   left: 0;
+   position: fixed;
+   top: 0;
+   z-index: -10;
+   width: 100%;
+   opacity: 0;
+}
+
+.filter-overlay.active {
+   z-index: 15;
+   opacity: 1;
+}
+
+@media (min-width: 840px) {
+   .filter-sm {
+      display: none;
+   }
+
+   .filter-md {
+      display: block;
+      margin-top: 4rem;
+      padding: 1rem;
+      width: 100%;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 6rem;
+      overflow: auto;
+      height: 80vh;
+      border-radius: 5px;
+      background-color: rgba(253, 253, 254, 1);
+      border: 1px solid #d3d7e1;
+   }
+
+   .filter {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      padding-top: 0.6rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid #d3d7e1;
+   }
+
+   .filter-title {
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+   }
+}

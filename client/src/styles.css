@@ -1,0 +1,31 @@
+@import url('https://driftcss.netlify.app/css/drift.css');
+
+body {
+   background: hsl(180, 5%, 96%);
+   position: relative;
+}
+
+.container {
+   max-width: 1400px;
+}
+
+.row {
+   flex-direction: row;
+   flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+   .row {
+      flex-wrap: wrap;
+   }
+}
+
+@media (min-width: 840px) {
+   .wrapper {
+      display: flex;
+      position: relative;
+      max-width: 1400px;
+      margin: 0 auto;
+      justify-content: space-between;
+   }
+}

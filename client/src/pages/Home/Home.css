@@ -1,0 +1,35 @@
+.categories {
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.category-card {
+   display: flex;
+   flex-direction: column;
+   background-color: rgba(251, 252, 252, 1);
+   padding: 1rem;
+   border: 5px solid rgba(251, 252, 252, 1);
+   margin: 0.5rem;
+   border-radius: 5px;
+   color: #545e7a;
+}
+
+.category-title {
+   font-size: 1rem;
+   text-transform: uppercase;
+   font-weight: 700;
+   text-align: center;
+}
+
+.category-img {
+   max-width: 100%;
+}
+
+@media (min-width: 840px) {
+   .categories {
+      flex-direction: row;
+   }
+}
