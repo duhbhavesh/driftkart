@@ -2,8 +2,9 @@ import { useData } from '../../context/DataContext';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DesktopNavDataLeft } from './HeaderData';
-import './Header.css';
 import { Sidebar } from '../Sidebar/Sidebar';
+import Logo from '../../drift.svg';
+import './Header.css';
 
 export const Header = () => {
    const { state } = useData();
@@ -20,7 +21,7 @@ export const Header = () => {
             <nav className='navbar-sm'>
                <div className='navbar'>
                   <ul className='nav-items'>
-                     <li className='nav-item navbar-link'>
+                     <li className='nav-item navbar-link' id='nav-item-sidebar'>
                         <button
                            onClick={handleSidebar}
                            className='btn btn-link btn-bars nav-item-link'
@@ -30,7 +31,12 @@ export const Header = () => {
                      </li>
                      <li className='nav-item navbar-link'>
                         <Link to='/' className='navbar-brand nav-item-link'>
-                           DriftKart
+                           <img
+                              src={Logo}
+                              alt='Driftkart logo'
+                              id='navbar-logo'
+                           />
+                           <span>Driftkart</span>
                         </Link>
                      </li>
                   </ul>
@@ -73,7 +79,8 @@ export const Header = () => {
 
             <nav className='navbar navbar-md'>
                <Link to='/' className='navbar-brand navbar-link nav-item-link'>
-                  DriftKart
+                  <img src={Logo} alt='Driftkart logo' id='navbar-logo' />
+                  <span>Driftkart</span>
                </Link>
 
                <ul className='nav-items'>
