@@ -1,4 +1,7 @@
 import './styles.css';
+import { useData } from './context/DataContext';
+import { useEffect } from 'react';
+import { handleFetchProducts } from './utils/serverRequest';
 import { Routes, Route } from 'react-router-dom';
 import { Toast } from './components/Toast/Toast';
 import { Header } from './components/Header/Header';
@@ -8,9 +11,8 @@ import { Product } from './pages/Product/Product';
 import { WishList } from './pages/WishList/WishList';
 import { Cart } from './pages/Cart/Cart';
 import { Footer } from './components/Footer/Footer';
-import { handleFetchProducts } from './utils/serverRequest';
-import { useData } from './context/DataContext';
-import { useEffect } from 'react';
+import { Signup } from './pages/Auth/Signup';
+import { Login } from './pages/Auth/Login';
 
 const App = () => {
    const { dispatch } = useData();
@@ -66,6 +68,8 @@ const App = () => {
             <Route path='/wishlist' element={<WishList />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/product/:id' element={<Product />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/login' element={<Login />} />
          </Routes>
          <Footer />
       </div>

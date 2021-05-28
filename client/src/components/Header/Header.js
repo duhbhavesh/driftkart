@@ -115,7 +115,7 @@ export const Header = () => {
                      </Link>
                   </li>
                   <li className='nav-item navbar-link'>
-                     <Link to='/' className='nav-item-link'>
+                     <Link to='/login' className='nav-item-link'>
                         <i className='fas fa-user'></i>
                      </Link>
                   </li>
