@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const SECRET = 'okokok';
+const SECRET = process.env.SECRET;
 
 const { Cart } = require('../models/cart.model');
 const { Wishlist } = require('../models/wishlist.model');

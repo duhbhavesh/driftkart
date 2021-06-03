@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const SECRET = 'okokok';
+const SECRET = process.env.SECRET;
 
 const handleAuthVerify = async (req, res, next) => {
    const token = req.headers.authorization;
