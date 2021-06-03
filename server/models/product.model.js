@@ -24,7 +24,7 @@ const PopulateProducts = async () => {
          console.log(savedProduct);
       });
    } catch (error) {
-      console.log(error);
+      console.log(error.message);
    }
 };
 
