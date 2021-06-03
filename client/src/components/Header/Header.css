@@ -4,6 +4,21 @@
    z-index: 15;
 }
 
+.navbar-brand {
+   display: flex;
+   align-items: center;
+}
+
+#navbar-logo {
+   width: 30px;
+   height: 30px;
+   margin-right: 0.3rem;
+}
+
+#nav-item-sidebar {
+   margin-right: 0rem;
+}
+
 .badge-top {
    top: -0.4rem;
    width: 0.9rem;
