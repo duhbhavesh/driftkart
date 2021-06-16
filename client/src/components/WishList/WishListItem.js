@@ -18,7 +18,7 @@ export const WishListItem = ({ product }) => {
             </h3>
             <div className='product-price'>
                <p className='new-price'>
-                  ₹{product.price}{' '}
+                  ₹{product.price}
                   <span className='old-price'>₹ {product.price}</span>
                </p>
             </div>

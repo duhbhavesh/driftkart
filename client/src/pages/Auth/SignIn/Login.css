@@ -13,8 +13,8 @@
    border-radius: 5px;
    margin-top: 2rem;
    padding: 0.8rem;
-   padding-top: 4rem;
-   padding-bottom: 4rem;
+   padding-top: 2rem;
+   padding-bottom: 3rem;
 }
 
 .input-label {
@@ -30,4 +30,21 @@
    margin: 0;
    margin-top: 1rem;
    width: 100%;
+   font-weight: 600;
+}
+
+.server-error {
+   display: block;
+   text-align: center;
+   margin-top: 0.5rem;
+   font-size: 0.8rem;
+   font-weight: 500;
+   color: #ff4d4f;
+}
+
+.signup-link {
+   display: block;
+   font-weight: 500;
+   margin-top: 1rem;
+   text-align: center;
 }

@@ -11,7 +11,7 @@ export const Cart = () => {
       <>
          <section className='cart-sec'>
             <h2 className='cart-heading'>Cart</h2>
-            {cart.length === 0 ? (
+            {cart?.length === 0 ? (
                <h3 className='cart-info'>Your Cart is Empty</h3>
             ) : (
                <div className='wrapper-cart'>
