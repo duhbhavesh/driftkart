@@ -5,11 +5,19 @@ import { DesktopNavDataLeft } from './HeaderData';
 import { Sidebar } from '../Sidebar/Sidebar';
 import Logo from '../../drift.svg';
 import './Header.css';
+import { useAuth } from '../../context/AuthContext';
+import toast from 'react-hot-toast';
 
 export const Header = () => {
    const { state } = useData();
    const { wishList, cart } = state;
+   const {
+      authState: { token },
+      handleUserLogout,
+      authDispatch,
+   } = useAuth();
    const [showSidebar, setShowSidebar] = useState(false);
+   const notify = (message) => toast.success(message);
 
    const handleSidebar = () => {
       setShowSidebar(!showSidebar);
@@ -44,24 +52,42 @@ export const Header = () => {
                      <li className='nav-item navbar-link'>
                         <Link to='/wishlist' className='nav-item-link'>
                            <i className='fas fa-heart'></i>
-                           <span className='badge badge-error badge-top'>
-                              {wishList.length}
-                           </span>
+                           {token && (
+                              <span className='badge badge-error badge-top'>
+                                 {wishList.length}
+                              </span>
+                           )}
                         </Link>
                      </li>
                      <li className='nav-item navbar-link'>
                         <Link to='/cart' className='nav-item-link'>
                            <i className='fas fa-shopping-cart'></i>
-                           <span className='badge badge-error badge-top'>
-                              {cart.length}
-                           </span>
+                           {token && (
+                              <span className='badge badge-error badge-top'>
+                                 {cart.length}
+                              </span>
+                           )}
                         </Link>
                      </li>
-                     <li className='nav-item navbar-link'>
-                        <Link to='/' className='nav-item-link'>
-                           <i className='fas fa-user'></i>
-                        </Link>
-                     </li>
+                     {token ? (
+                        <li className='nav-item navbar-link'>
+                           <button
+                              className='btn btn-primary btn-auth'
+                              onClick={() =>
+                                 handleUserLogout(authDispatch, notify)
+                              }>
+                              Log Out
+                           </button>
+                        </li>
+                     ) : (
+                        <li className='nav-item navbar-link'>
+                           <Link to='/login' className='nav-item-link'>
+                              <button className='btn btn-primary btn-auth'>
+                                 Log In
+                              </button>
+                           </Link>
+                        </li>
+                     )}
                   </ul>
                </div>
                <form className='form-inline'>
@@ -108,24 +134,42 @@ export const Header = () => {
                   <li className='nav-item navbar-link'>
                      <Link to='/wishlist' className='nav-item-link'>
                         <i className='fas fa-heart'></i>
-                        <span className='badge badge-error badge-top'>
-                           {wishList.length}
-                        </span>
+                        {token && (
+                           <span className='badge badge-error badge-top'>
+                              {wishList.length}
+                           </span>
+                        )}
                      </Link>
                   </li>
                   <li className='nav-item navbar-link'>
                      <Link to='/cart' className='nav-item-link'>
                         <i className='fas fa-shopping-cart'></i>
-                        <span className='badge badge-error badge-top'>
-                           {cart.length}
-                        </span>
+                        {token && (
+                           <span className='badge badge-error badge-top'>
+                              {cart.length}
+                           </span>
+                        )}
                      </Link>
                   </li>
-                  <li className='nav-item navbar-link'>
-                     <Link to='/login' className='nav-item-link'>
-                        <i className='fas fa-user'></i>
-                     </Link>
-                  </li>
+                  {token ? (
+                     <li className='nav-item navbar-link'>
+                        <button
+                           className='btn btn-primary btn-auth'
+                           onClick={() =>
+                              handleUserLogout(authDispatch, notify)
+                           }>
+                           Log Out
+                        </button>
+                     </li>
+                  ) : (
+                     <li className='nav-item navbar-link'>
+                        <Link to='/login' className='nav-item-link'>
+                           <button className='btn btn-primary btn-auth'>
+                              Log In
+                           </button>
+                        </Link>
+                     </li>
+                  )}
                </ul>
             </nav>
 

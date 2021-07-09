@@ -3,16 +3,16 @@ export const DataReducer = (state, { type, payload }) => {
       case 'SET_PRODUCTS':
          return { ...state, products: payload };
 
-      case 'SET_WISHLIST':
+      case 'SET_USER_WISHLIST':
          return { ...state, wishList: payload };
 
-      case 'SET_CART':
+      case 'SET_USER_CART':
          return { ...state, cart: payload };
 
       case 'ADD_CART_ITEM':
          return {
             ...state,
-            cart: [...state.cart, { ...payload, quantity: 1 }],
+            cart: [...state.cart, { ...payload }],
          };
 
       case 'REMOVE_CART_ITEM':

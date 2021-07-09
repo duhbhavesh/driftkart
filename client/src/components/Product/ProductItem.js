@@ -34,7 +34,7 @@ export const ProductItem = ({ product }) => {
                   </p>
                </div>
                <div className='cart'>
-                  <AddToCartButton product={product} />
+                  <AddToCartButton key={product.id} product={product} />
                </div>
             </div>
          </div>

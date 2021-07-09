@@ -1,7 +1,11 @@
 import './styles.css';
 import { useData } from './context/DataContext';
 import { useEffect } from 'react';
-import { handleFetchProducts } from './utils/serverRequest';
+import {
+   handleFetchCart,
+   handleFetchProducts,
+   handleFetchWishlist,
+} from './utils/serverRequest';
 import { Routes, Route } from 'react-router-dom';
 import { Toast } from './components/Toast/Toast';
 import { Header } from './components/Header/Header';
@@ -11,52 +15,27 @@ import { Product } from './pages/Product/Product';
 import { WishList } from './pages/WishList/WishList';
 import { Cart } from './pages/Cart/Cart';
 import { Footer } from './components/Footer/Footer';
-import { Signup } from './pages/Auth/Signup';
-import { Login } from './pages/Auth/Login';
+import { Signup } from './pages/Auth/SignUp/Signup';
+import { Login } from './pages/Auth/SignIn/Login';
+import { PrivateRoute } from './pages/Auth/PrivateRoute';
+import { useAuth } from './context/AuthContext';
 
 const App = () => {
    const { dispatch } = useData();
+   const {
+      authState: { token },
+   } = useAuth();
 
    useEffect(() => {
-      (async () => {
-         try {
-            const {
-               data: { products },
-            } = await handleFetchProducts(
-               'https://driftkart-backend.duhbhavesh.repl.co/products',
-            );
-            dispatch({ type: 'SET_PRODUCTS', payload: products });
-         } catch (error) {
-            console.log(error);
-         }
-      })();
+      handleFetchProducts(dispatch);
+   }, []);
 
-      (async () => {
-         try {
-            const {
-               data: { wishList },
-            } = await handleFetchProducts(
-               'https://driftkart-backend.duhbhavesh.repl.co/wishlist',
-            );
-            dispatch({ type: 'SET_WISHLIST', payload: wishList });
-         } catch (error) {
-            console.log(error);
-         }
-      })();
-
-      (async () => {
-         try {
-            const {
-               data: { cart },
-            } = await handleFetchProducts(
-               'https://driftkart-backend.duhbhavesh.repl.co/cart',
-            );
-            dispatch({ type: 'SET_CART', payload: cart });
-         } catch (error) {
-            console.log(error);
-         }
-      })();
-   }, [dispatch]);
+   useEffect(() => {
+      if (token) {
+         handleFetchCart(dispatch, token);
+         handleFetchWishlist(dispatch, token);
+      }
+   }, [dispatch, token]);
 
    return (
       <div className='App'>
@@ -65,9 +44,11 @@ const App = () => {
          <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/products' element={<Products />} />
-            <Route path='/wishlist' element={<WishList />} />
-            <Route path='/cart' element={<Cart />} />
             <Route path='/product/:id' element={<Product />} />
+
+            <PrivateRoute path='/wishlist' element={<WishList />} />
+            <PrivateRoute path='/cart' element={<Cart />} />
+
             <Route path='/signup' element={<Signup />} />
             <Route path='/login' element={<Login />} />
          </Routes>

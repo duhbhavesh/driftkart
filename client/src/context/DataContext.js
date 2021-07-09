@@ -1,12 +1,12 @@
 import { createContext, useContext, useReducer } from 'react';
-import { DataReducer } from './DataReducer';
+import { DataReducer } from '../reducer/DataReducer';
 
 export const DataContext = createContext();
 
 const initialState = {
-   cart: [],
-   wishList: [],
    products: [],
+   wishList: [],
+   cart: [],
    sortBy: null,
    showInventory: true,
    showFastDelivery: false,

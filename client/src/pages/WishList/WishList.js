@@ -14,8 +14,10 @@ export const WishList = () => {
                <h3 className='wishlist-info'>Your wishlist is Empty</h3>
             ) : (
                <div className='wrapper-wishlist'>
-                  {wishList.map((product) => (
-                     <WishListItem key={product.id} product={product} />
+                  {wishList?.map(({ product }) => (
+                     <>
+                        <WishListItem key={product.id} product={product} />
+                     </>
                   ))}
                </div>
             )}
