@@ -12,9 +12,9 @@ export const Header = () => {
    const { state } = useData();
    const { wishList, cart } = state;
    const {
-      state: { token },
+      authState: { token },
       handleUserLogout,
-      dispatch,
+      authDispatch,
    } = useAuth();
    const [showSidebar, setShowSidebar] = useState(false);
    const notify = (message) => toast.success(message);
@@ -74,7 +74,7 @@ export const Header = () => {
                            <button
                               className='btn btn-primary btn-auth'
                               onClick={() =>
-                                 handleUserLogout(dispatch, notify)
+                                 handleUserLogout(authDispatch, notify)
                               }>
                               Log Out
                            </button>
@@ -155,7 +155,9 @@ export const Header = () => {
                      <li className='nav-item navbar-link'>
                         <button
                            className='btn btn-primary btn-auth'
-                           onClick={() => handleUserLogout(dispatch, notify)}>
+                           onClick={() =>
+                              handleUserLogout(authDispatch, notify)
+                           }>
                            Log Out
                         </button>
                      </li>

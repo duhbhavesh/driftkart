@@ -8,10 +8,10 @@ import { useAuth } from '../../context/AuthContext';
 export const AddToCartButton = ({ product }) => {
    const navigate = useNavigate();
    const { state, dispatch } = useData();
+
    const {
-      state: { token },
+      authState: { token },
    } = useAuth();
-   const { cart } = state;
 
    const notify = (message) => toast.success(message);
 
@@ -23,24 +23,26 @@ export const AddToCartButton = ({ product }) => {
    return (
       <>
          <button
-            onClick={() =>
+            onClick={() => {
                token
-                  ? handleAddToCartItem({
-                       state,
-                       dispatch,
-                       product,
-                       notify,
-                       navigate,
-                       token,
-                    })
-                  : handleAddItemError()
-            }
+                  ? checkItem(state?.cart, product?.id)
+                     ? navigate('/cart')
+                     : handleAddToCartItem({
+                          state,
+                          dispatch,
+                          product,
+                          notify,
+                          navigate,
+                          token,
+                       })
+                  : handleAddItemError();
+            }}
             className='btn btn-primary btn-cart'
             type='button'>
             {token
-               ? checkItem(cart, product).length === 0
-                  ? 'Add to Cart'
-                  : 'Go to Cart'
+               ? checkItem(state?.cart, product?.id)
+                  ? 'Go to Cart'
+                  : 'Add to Cart'
                : 'Add to Cart'}
          </button>
       </>

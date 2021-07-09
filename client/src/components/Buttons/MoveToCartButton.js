@@ -6,7 +6,7 @@ import { handleMoveItemToCart } from '../../utils/serverRequest';
 export const MoveToCartButton = ({ product }) => {
    const { state, dispatch } = useData();
    const {
-      state: { token },
+      authState: { token },
    } = useAuth();
 
    const notify = (message) => toast.success(message);

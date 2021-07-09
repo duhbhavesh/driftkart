@@ -2,10 +2,9 @@ import { useData } from '../../context/DataContext';
 import './CartSummary.css';
 
 const getAmount = (items) => {
-   return items.reduce(
-      (total, { price, quantity }) => total + price * quantity,
-      0,
-   );
+   return items.reduce((acc, item) => {
+      return acc + Number(item.product.price) * item.quantity;
+   }, 0);
 };
 
 export const CartSummary = () => {

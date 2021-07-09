@@ -23,12 +23,12 @@ import { useAuth } from './context/AuthContext';
 const App = () => {
    const { dispatch } = useData();
    const {
-      state: { token },
+      authState: { token },
    } = useAuth();
 
    useEffect(() => {
       handleFetchProducts(dispatch);
-   }, [dispatch]);
+   }, []);
 
    useEffect(() => {
       if (token) {

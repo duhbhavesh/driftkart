@@ -5,7 +5,7 @@ import './Login.css';
 import toast from 'react-hot-toast';
 
 export const Login = () => {
-   const { handleUserLogin, dispatch } = useAuth();
+   const { handleUserLogin, authDispatch } = useAuth();
    const { state } = useLocation();
    const [user, setUser] = useState({
       email: 'test@gmail.com',
@@ -17,14 +17,13 @@ export const Login = () => {
 
    const handleOnChangeInput = (e) => {
       setUser({ ...user, [e.target.name]: e.target.value });
-      console.log(e.target.value);
    };
 
    const handleFormSubmit = async () => {
       setServerError('');
       const response = await handleUserLogin(
          user,
-         dispatch,
+         authDispatch,
          navigateToPath,
          notify,
       );

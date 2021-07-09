@@ -10,12 +10,14 @@ export const WishList = () => {
       <>
          <section className='wishlist-sec'>
             <h2 className='wishlist-heading'>Wishlist</h2>
-            {wishList?.length === 0 ? (
+            {wishList.length === 0 ? (
                <h3 className='wishlist-info'>Your wishlist is Empty</h3>
             ) : (
                <div className='wrapper-wishlist'>
-                  {wishList?.map((product) => (
-                     <WishListItem key={product.id} product={product} />
+                  {wishList?.map(({ product }) => (
+                     <>
+                        <WishListItem key={product.id} product={product} />
+                     </>
                   ))}
                </div>
             )}

@@ -5,15 +5,12 @@ export const handleFetchProducts = async (dispatch) => {
    try {
       const {
          data: { products },
-         status,
       } = await axios({
          method: 'GET',
          url: `${API_ENDPOINT}/api/products`,
       });
 
-      if (status === 200 || status === 201) {
-         dispatch({ type: 'SET_PRODUCTS', payload: products });
-      }
+      dispatch({ type: 'SET_PRODUCTS', payload: products });
    } catch (error) {
       console.log(error);
    }
@@ -23,7 +20,6 @@ export const handleFetchCart = async (dispatch, token) => {
    try {
       const {
          data: { response },
-         status,
       } = await axios({
          method: 'GET',
          url: `${API_ENDPOINT}/api/cart`,
@@ -32,9 +28,7 @@ export const handleFetchCart = async (dispatch, token) => {
          },
       });
 
-      if (status === 200 || status === 201) {
-         dispatch({ type: 'SET_USER_CART', payload: response });
-      }
+      dispatch({ type: 'SET_USER_CART', payload: response });
    } catch (error) {
       console.log(error);
    }
@@ -44,7 +38,6 @@ export const handleFetchWishlist = async (dispatch, token) => {
    try {
       const {
          data: { response },
-         status,
       } = await axios({
          method: 'GET',
          url: `${API_ENDPOINT}/api/wishlist`,
@@ -53,57 +46,48 @@ export const handleFetchWishlist = async (dispatch, token) => {
          },
       });
 
-      if (status === 200 || status === 201) {
-         dispatch({ type: 'SET_USER_WISHLIST', payload: response });
-      }
+      dispatch({ type: 'SET_USER_WISHLIST', payload: response });
    } catch (error) {
       console.log(error);
    }
 };
 
 export const handleAddToCartItem = async ({
-   state,
    dispatch,
    product,
-   navigate,
    notify,
    token,
 }) => {
-   if (checkItem(state.cart, product).length === 0) {
-      try {
-         const { status } = await axios({
-            method: 'POST',
-            url: `${API_ENDPOINT}/api/cart/${product.id}`,
-            data: {
-               _id: product.id,
-               quantity: 1,
-            },
-            headers: {
-               Authorization: token,
-            },
-         });
-         if (status === 200 || status === 201) {
-            notify(`${product.name} Adding to the Cart`);
-            dispatch({ type: 'ADD_CART_ITEM', payload: product });
-         }
-      } catch (error) {
-         console.log(error);
-      }
-   } else {
-      navigate('/cart');
+   try {
+      const {
+         data: { response },
+      } = await axios({
+         method: 'POST',
+         url: `${API_ENDPOINT}/api/cart/${product.id}`,
+         headers: {
+            Authorization: token,
+         },
+      });
+
+      notify(`${product.name} Adding to the Cart`);
+      dispatch({ type: 'SET_USER_CART', payload: response });
+   } catch (error) {
+      console.log({ error });
    }
 };
 
-export const handleAddRemoveWishlistItem = async ({
+export const handleToggleWishList = async ({
    state,
    dispatch,
    product,
    notify,
    token,
 }) => {
-   if (checkItem(state.wishList, product).length === 0) {
+   if (!checkItem(state.wishList, product.id)) {
       try {
-         const { status } = await axios({
+         const {
+            data: { response },
+         } = await axios({
             method: 'POST',
             url: `${API_ENDPOINT}/api/wishlist/${product.id}`,
             data: {
@@ -114,16 +98,14 @@ export const handleAddRemoveWishlistItem = async ({
             },
          });
 
-         if (status === 200 || status === 201) {
-            notify(`${product.name} Adding to the Wishlist`);
-            dispatch({ type: 'ADD_WISHLIST_ITEM', payload: product });
-         }
+         notify(`${product.name} Adding to the Wishlist`);
+         dispatch({ type: 'SET_USER_WISHLIST', payload: response });
       } catch (error) {
-         console.log(error);
+         console.log({ error });
       }
    } else {
       try {
-         const { status } = await axios({
+         await axios({
             method: 'DELETE',
             url: `${API_ENDPOINT}/api/wishlist/${product.id}`,
             headers: {
@@ -131,40 +113,33 @@ export const handleAddRemoveWishlistItem = async ({
             },
          });
 
-         if (status === 200 || status === 201) {
-            notify(`${product.name} Removing from the Wishlist`);
-            dispatch({ type: 'REMOVE_WISHLIST_ITEM', payload: product });
-         }
+         notify(`${product.name} Removing from the Wishlist`);
+         dispatch({ type: 'REMOVE_WISHLIST_ITEM', payload: product });
       } catch (error) {
-         console.log(error);
+         console.log({ error });
       }
    }
 };
 
 export const handleRemoveWishListItem = async ({
-   state,
    dispatch,
    product,
    notify,
    token,
 }) => {
-   if (checkItem(state.wishList, product)) {
-      try {
-         const { status } = await axios({
-            method: 'DELETE',
-            url: `${API_ENDPOINT}/api/wishlist/${product.id}`,
-            headers: {
-               Authorization: token,
-            },
-         });
+   try {
+      await axios({
+         method: 'DELETE',
+         url: `${API_ENDPOINT}/api/wishlist/${product.id}`,
+         headers: {
+            Authorization: token,
+         },
+      });
 
-         if (status === 200 || status === 201) {
-            notify(`${product.name} Removing from the Wishlist`);
-            dispatch({ type: 'REMOVE_WISHLIST_ITEM', payload: product });
-         }
-      } catch (error) {
-         console.log(error);
-      }
+      notify(`${product.name} Removing from the Wishlist`);
+      dispatch({ type: 'REMOVE_WISHLIST_ITEM', payload: product });
+   } catch (error) {
+      console.log({ error });
    }
 };
 
@@ -175,9 +150,11 @@ export const handleMoveItemToCart = async ({
    notify,
    token,
 }) => {
-   if (checkItem(state.cart, product).length === 0) {
+   if (!checkItem(state.cart, product.id)) {
       try {
-         const { status } = await axios({
+         const {
+            data: { response },
+         } = await axios({
             method: 'POST',
             url: `${API_ENDPOINT}/api/cart/${product.id}`,
             data: {
@@ -189,53 +166,46 @@ export const handleMoveItemToCart = async ({
             },
          });
 
-         if (status === 200 || status === 201) {
-            notify(`${product.name} Moving to the Cart`);
-            dispatch({ type: 'ADD_CART_ITEM', payload: product });
-            handleRemoveWishListItem({
-               state,
-               dispatch,
-               product,
-               notify,
-               token,
-            });
-         }
+         notify(`${product.name} Moving to the Cart`);
+         dispatch({ type: 'SET_USER_CART', payload: response });
+         handleRemoveWishListItem({
+            state,
+            dispatch,
+            product,
+            notify,
+            token,
+         });
       } catch (error) {
-         console.log(error);
+         console.log({ error });
       }
    } else {
       notify(`${product.name} Already present in the Cart`);
-      handleRemoveWishListItem({ state, dispatch, product, notify });
+      handleRemoveWishListItem({ state, dispatch, product, notify, token });
    }
 };
 
 export const handleRemoveCartItem = async ({
-   state,
    dispatch,
    product,
    notify,
    token,
 }) => {
-   if (checkItem(state.cart, product)) {
-      try {
-         const { status } = await axios({
-            method: 'DELETE',
-            url: `${API_ENDPOINT}/api/cart/${product.id}`,
-            data: {
-               _id: product.id,
-            },
-            headers: {
-               Authorization: token,
-            },
-         });
+   try {
+      await axios({
+         method: 'DELETE',
+         url: `${API_ENDPOINT}/api/cart/${product.id}`,
+         data: {
+            _id: product.id,
+         },
+         headers: {
+            Authorization: token,
+         },
+      });
 
-         if (status === 200 || status === 201) {
-            notify(`${product.name} Removing from the Cart`);
-            dispatch({ type: 'REMOVE_CART_ITEM', payload: product });
-         }
-      } catch (error) {
-         console.log(error);
-      }
+      notify(`${product.name} Removing from the Cart`);
+      dispatch({ type: 'REMOVE_CART_ITEM', payload: product });
+   } catch (error) {
+      console.log({ error });
    }
 };
 
@@ -246,9 +216,11 @@ export const handleMoveItemToWishlist = async ({
    notify,
    token,
 }) => {
-   if (checkItem(state.wishList, product).length === 0) {
+   if (!checkItem(state.wishList, product.id)) {
       try {
-         const { status } = await axios({
+         const {
+            data: { response },
+         } = await axios({
             method: 'POST',
             url: `${API_ENDPOINT}/api/wishlist/${product.id}`,
             data: {
@@ -259,46 +231,20 @@ export const handleMoveItemToWishlist = async ({
             },
          });
 
-         if (status === 200 || status === 201) {
-            notify(`${product.name} Moving to the Wishlist`);
-            dispatch({ type: 'ADD_WISHLIST_ITEM', payload: product });
-            handleRemoveCartItem({
-               state,
-               dispatch,
-               product,
-               notify,
-               token,
-            });
-         }
+         notify(`${product.name} Moving to the Wishlist`);
+         dispatch({ type: 'SET_USER_WISHLIST', payload: response });
+         handleRemoveCartItem({
+            state,
+            dispatch,
+            product,
+            notify,
+            token,
+         });
       } catch (error) {
-         console.log(error);
+         console.log({ error });
       }
    } else {
       notify(`${product.name} Already present in the Wishlist`);
-      handleRemoveCartItem({ state, dispatch, product, notify });
-   }
-};
-
-export const handleUserSignup = async ({
-   email,
-   password,
-   firstName,
-   lastName,
-}) => {
-   try {
-      const { status } = await axios({
-         method: 'POST',
-         url: `${API_ENDPOINT}/api/signup`,
-         data: {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-         },
-      });
-
-      return { status };
-   } catch (error) {
-      console.log(error);
+      handleRemoveCartItem({ state, dispatch, product, notify, token });
    }
 };

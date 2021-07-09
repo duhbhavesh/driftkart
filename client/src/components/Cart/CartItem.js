@@ -3,8 +3,9 @@ import { RemoveCartItemButton } from '../Buttons/RemoveCartItemButton';
 import { MoveToWishListButton } from '../Buttons/MoveToWishListButton';
 import './CartItem.css';
 
-export const CartItem = ({ product }) => {
+export const CartItem = ({ product, quantity }) => {
    const { dispatch } = useData();
+   const { image, name, brand, price } = product;
 
    const handleIncrementQty = (product) => {
       return dispatch({ type: 'INCREASE_QUANTITY', payload: product });
@@ -16,19 +17,19 @@ export const CartItem = ({ product }) => {
       <>
          <div className='cart-item'>
             <figure className='cart-item-figure'>
-               <img className='cart-image' alt='' src={product.image} />
+               <img className='cart-image' alt='' src={image} />
             </figure>
             <div className='cart-item-details'>
-               <div className='cart-item-title'>{product.name}</div>
-               <div className='cart-item-brand'>Brand - {product.brand}</div>
+               <div className='cart-item-title'>{name}</div>
+               <div className='cart-item-brand'>Brand - {brand}</div>
                <div className='cart-item-quantity'>
                   <button
                      onClick={() => handleDecrementQty(product)}
-                     disabled={product.quantity < 1}
+                     disabled={quantity < 1}
                      className='btn btn-square cart-item-quantity-dec'>
                      -
                   </button>
-                  <span className='cart-item-qty'>{product.quantity}</span>
+                  <span className='cart-item-qty'>{quantity}</span>
                   <button
                      onClick={() => handleIncrementQty(product)}
                      className='btn btn-square cart-item-quantity-inc'>
@@ -41,7 +42,7 @@ export const CartItem = ({ product }) => {
                </div>
             </div>
             <div className='cart-item-subtotal'>
-               ₹<span>{product.quantity * product.price}</span>
+               ₹<span>{quantity * price}</span>
             </div>
             <div className='cart-item-btns cart-item-btns-sm'>
                <MoveToWishListButton product={product} />

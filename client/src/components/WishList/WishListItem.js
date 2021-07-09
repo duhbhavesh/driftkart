@@ -6,20 +6,20 @@ import './WishListItem.css';
 export const WishListItem = ({ product }) => {
    return (
       <div className='wishlist-card product product-card'>
-         <RemoveWishlistButton product={product} />
+         <RemoveWishlistButton key={product.id} product={product} />
          <div className='product-image'>
-            <img className='card-img' src={product.image} alt='' />
+            <img className='card-img' src={product?.image} alt='' />
          </div>
          <div className='product-details'>
             <h3 className='product-heading'>
                <Link to='#' id='product-title'>
-                  {product.name}
+                  {product?.name}
                </Link>
             </h3>
             <div className='product-price'>
                <p className='new-price'>
-                  ₹{product.price}
-                  <span className='old-price'>₹ {product.price}</span>
+                  ₹{product?.price}
+                  <span className='old-price'>₹ {product?.price}</span>
                </p>
             </div>
          </div>
@@ -33,7 +33,7 @@ export const WishListItem = ({ product }) => {
                </span>
             </div>
             <div className='cart'>
-               <MoveToCartButton product={product} />
+               <MoveToCartButton key={product.id} product={product} />
             </div>
          </div>
       </div>

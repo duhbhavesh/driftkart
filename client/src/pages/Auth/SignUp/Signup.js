@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { handleUserSignup } from '../../../utils/serverRequest';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
 import './Signup.css';
 
 const isValidEmail = (email) => {
@@ -14,7 +15,7 @@ const isValidPassword = (password) => {
 };
 
 export const Signup = () => {
-   const [success, setSucess] = useState(false);
+   const { handleUserSignup } = useAuth();
    const [user, setUser] = useState({
       firstName: '',
       lastName: '',
@@ -28,8 +29,11 @@ export const Signup = () => {
       password: '',
    });
 
+   const [serverError, setServerError] = useState('');
+   const navigate = useNavigate();
+   const notify = (message) => toast.success(message);
+
    const handleOnChangeInput = (e) => {
-      console.log(e.target.value);
       setUser({ ...user, [e.target.name]: e.target.value });
    };
 
@@ -71,20 +75,17 @@ export const Signup = () => {
       return successVailidation;
    };
 
-   const handleFormSubmit = async (e, firstName, lastName, email, password) => {
-      e.preventDefault();
+   const handleFormSubmit = async () => {
       if (handleFormValidate()) {
-         const response = await handleUserSignup({
-            firstName,
-            lastName,
-            email,
-            password,
-         });
+         const response = await handleUserSignup(user, notify);
 
          if (response?.status === 201) {
-            setSucess(true);
-         } else {
-            setError(response?.data?.message || 'Something went wrong');
+            navigate('/login');
+            notify('User Signed Up');
+         }
+
+         if (response?.status !== 201) {
+            setServerError(response?.data.message);
          }
       }
    };
@@ -92,109 +93,97 @@ export const Signup = () => {
    return (
       <>
          <div className='container'>
-            {!success ? (
-               <div className='container-login'>
-                  <div className='card-login'>
-                     <h3 className='title-login'>Sign up</h3>
-                     <div className='input-group'>
-                        <label
-                           className='input-label'
-                           htmlFor='input-first-name'>
-                           First Name
-                        </label>
-                        <input
-                           className='input-box'
-                           id='input-first-name'
-                           type='text'
-                           placeholder='First Name'
-                           name='firstName'
-                           value={user.firstName}
-                           onChange={handleOnChangeInput}
-                        />
-                        {error.firstName && (
-                           <small className='error-text'>
-                              *{error.firstName}
-                           </small>
-                        )}
-                     </div>
-                     <div className='input-group'>
-                        <label
-                           className='input-label'
-                           htmlFor='input-last-name'>
-                           Last Name
-                        </label>
-                        <input
-                           className='input-box'
-                           id='input-last-name'
-                           type='text'
-                           placeholder='Last Name'
-                           name='lastName'
-                           value={user.lastName}
-                           onChange={handleOnChangeInput}
-                        />
-                        {error.lastName && (
-                           <small className='error-text'>
-                              *{error.lastName}
-                           </small>
-                        )}
-                     </div>
-                     <div className='input-group'>
-                        <label className='input-label' htmlFor='input-email'>
-                           E-mail
-                        </label>
-                        <input
-                           className='input-box'
-                           id='input-email'
-                           type='email'
-                           placeholder='name@gmail.com'
-                           name='email'
-                           value={user.email}
-                           onChange={handleOnChangeInput}
-                        />
-                        {error.email && (
-                           <small className='error-text'>*{error.email}</small>
-                        )}
-                     </div>
-                     <div className='input-group'>
-                        <label className='input-label' htmlFor='input-password'>
-                           Password
-                        </label>
-                        <input
-                           className='input-box'
-                           id='input-password'
-                           type='password'
-                           placeholder='Password'
-                           name='password'
-                           value={user.password}
-                           onChange={handleOnChangeInput}
-                        />
-                        {error.password && (
-                           <small className='error-text'>
-                              *{error.password}
-                           </small>
-                        )}
-                     </div>
-                     <button
-                        className='btn btn-primary btn-signup'
-                        onClick={(e) =>
-                           handleFormSubmit(
-                              e,
-                              user.firstName,
-                              user.lastName,
-                              user.email,
-                              user.password,
-                           )
-                        }>
-                        Sign up
-                     </button>
-                     <Link className='login-link' to='/login'>
-                        <small>Existing User? Login</small>
-                     </Link>
+            <div className='container-login'>
+               <div className='card-login'>
+                  <h3 className='title-login'>Sign up</h3>
+                  <div className='input-group'>
+                     <label className='input-label' htmlFor='input-first-name'>
+                        First Name
+                     </label>
+                     <input
+                        className='input-box'
+                        id='input-first-name'
+                        type='text'
+                        placeholder='First Name'
+                        name='firstName'
+                        value={user.firstName}
+                        onChange={handleOnChangeInput}
+                     />
+                     {error.firstName && (
+                        <small className='error-text'>*{error.firstName}</small>
+                     )}
                   </div>
+                  <div className='input-group'>
+                     <label className='input-label' htmlFor='input-last-name'>
+                        Last Name
+                     </label>
+                     <input
+                        className='input-box'
+                        id='input-last-name'
+                        type='text'
+                        placeholder='Last Name'
+                        name='lastName'
+                        value={user.lastName}
+                        onChange={handleOnChangeInput}
+                     />
+                     {error.lastName && (
+                        <small className='error-text'>*{error.lastName}</small>
+                     )}
+                  </div>
+                  <div className='input-group'>
+                     <label className='input-label' htmlFor='input-email'>
+                        E-mail
+                     </label>
+                     <input
+                        className='input-box'
+                        id='input-email'
+                        type='email'
+                        placeholder='name@gmail.com'
+                        name='email'
+                        value={user.email}
+                        onChange={handleOnChangeInput}
+                     />
+                     {error.email && (
+                        <small className='error-text'>*{error.email}</small>
+                     )}
+                  </div>
+                  <div className='input-group'>
+                     <label className='input-label' htmlFor='input-password'>
+                        Password
+                     </label>
+                     <input
+                        className='input-box'
+                        id='input-password'
+                        type='password'
+                        placeholder='Password'
+                        name='password'
+                        value={user.password}
+                        onChange={handleOnChangeInput}
+                     />
+                     {error.password && (
+                        <small className='error-text'>*{error.password}</small>
+                     )}
+                  </div>
+                  <button
+                     className='btn btn-primary btn-signup'
+                     onClick={handleFormSubmit}>
+                     Sign up
+                  </button>
+                  {serverError && (
+                     <div class='alert alert-error'>
+                        <p class='alert-heading'>
+                           <span>
+                              <i class='fas fa-exclamation-circle'></i>
+                           </span>
+                           {serverError}
+                        </p>
+                     </div>
+                  )}
+                  <Link className='login-link' to='/login'>
+                     <small>Existing User? Login</small>
+                  </Link>
                </div>
-            ) : (
-               <button className='btn btn-primary btn-login'>Login</button>
-            )}
+            </div>
          </div>
       </>
    );

@@ -1,7 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthReducer } from '../reducer/AuthReducer';
-import { handleUserSignup } from '../utils/serverRequest';
 import axios from 'axios';
 import { API_ENDPOINT } from '../utils/utils';
 
@@ -18,9 +17,18 @@ export const AuthProvider = ({ children }) => {
       token: tokenDetail,
    };
 
-   const [state, dispatch] = useReducer(AuthReducer, initialState);
+   const [authState, authDispatch] = useReducer(AuthReducer, initialState);
 
-   const handleUserLogin = async (user, dispatch, from, notify) => {
+   const handleUserSignup = async (user) => {
+      try {
+         const response = await axios.post(`${API_ENDPOINT}/api/signup`, user);
+         return response;
+      } catch (error) {
+         console.log(error);
+      }
+   };
+
+   const handleUserLogin = async (user, authDispatch, from, notify) => {
       try {
          const response = await axios.post(`${API_ENDPOINT}/api/login`, user);
          if (response.status === 200) {
@@ -29,7 +37,10 @@ export const AuthProvider = ({ children }) => {
                JSON.stringify({ token: response.data.token }),
             );
             notify('Logged In Successfully!');
-            dispatch({ type: 'SET_USER_LOGIN', payload: response.data.token });
+            authDispatch({
+               type: 'SET_USER_LOGIN',
+               payload: response.data.token,
+            });
             navigate(from);
          }
          return response;
@@ -39,11 +50,11 @@ export const AuthProvider = ({ children }) => {
       }
    };
 
-   const handleUserLogout = async (dispatch, notify) => {
+   const handleUserLogout = async (authDispatch, notify) => {
       setTimeout(() => {
          localStorage?.removeItem('session');
          notify('Logged Out Successfully!');
-         dispatch({ type: 'SET_USER_LOGOUT' });
+         authDispatch({ type: 'SET_USER_LOGOUT' });
       }, 1000);
    };
 
@@ -53,8 +64,8 @@ export const AuthProvider = ({ children }) => {
             handleUserSignup,
             handleUserLogin,
             handleUserLogout,
-            state,
-            dispatch,
+            authState,
+            authDispatch,
          }}>
          {children}
       </AuthContext.Provider>

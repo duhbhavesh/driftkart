@@ -6,7 +6,7 @@ import { handleMoveItemToWishlist } from '../../utils/serverRequest';
 export const MoveToWishListButton = ({ product }) => {
    const { state, dispatch } = useData();
    const {
-      state: { token },
+      authState: { token },
    } = useAuth();
 
    const notify = (message) => toast.success(message);

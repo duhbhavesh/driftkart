@@ -12,7 +12,7 @@ export const DataReducer = (state, { type, payload }) => {
       case 'ADD_CART_ITEM':
          return {
             ...state,
-            cart: [...state.cart, { ...payload, quantity: 1 }],
+            cart: [...state.cart, { ...payload }],
          };
 
       case 'REMOVE_CART_ITEM':

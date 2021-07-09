@@ -6,7 +6,7 @@ import { handleRemoveCartItem } from '../../utils/serverRequest';
 export const RemoveCartItemButton = ({ product }) => {
    const { state, dispatch } = useData();
    const {
-      state: { token },
+      authState: { token },
    } = useAuth();
 
    const notify = (message) => toast.success(message);

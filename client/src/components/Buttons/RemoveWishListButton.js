@@ -6,7 +6,7 @@ import { handleRemoveWishListItem } from '../../utils/serverRequest';
 export const RemoveWishlistButton = ({ product }) => {
    const { state, dispatch } = useData();
    const {
-      state: { token },
+      authState: { token },
    } = useAuth();
 
    const notify = (message) => toast.success(message);

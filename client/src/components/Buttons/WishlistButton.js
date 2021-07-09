@@ -1,6 +1,6 @@
 import { useData } from '../../context/DataContext';
 import { checkItem } from '../../utils/utils';
-import { handleAddRemoveWishlistItem } from '../../utils/serverRequest';
+import { handleToggleWishList } from '../../utils/serverRequest';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../context/AuthContext';
@@ -9,7 +9,7 @@ export const WishListButton = ({ product }) => {
    const navigate = useNavigate();
    const { state, dispatch } = useData();
    const {
-      state: { token },
+      authState: { token },
    } = useAuth();
    const { wishList } = state;
 
@@ -25,7 +25,7 @@ export const WishListButton = ({ product }) => {
          <button
             onClick={() =>
                token
-                  ? handleAddRemoveWishlistItem({
+                  ? handleToggleWishList({
                        state,
                        dispatch,
                        product,
@@ -38,7 +38,7 @@ export const WishListButton = ({ product }) => {
             type='button'>
             <i
                className={
-                  checkItem(wishList, product).length === 0
+                  !checkItem(wishList, product.id)
                      ? 'far fa-heart fa-heart-product'
                      : 'fas fa-heart fa-heart-product active'
                }></i>

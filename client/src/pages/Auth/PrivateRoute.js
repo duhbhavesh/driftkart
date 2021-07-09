@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 
 export const PrivateRoute = ({ path, ...props }) => {
    const {
-      state: { token },
+      authState: { token },
    } = useAuth();
 
    return token ? (
