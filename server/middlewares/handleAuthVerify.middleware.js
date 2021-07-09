@@ -4,13 +4,12 @@ const SECRET = process.env.SECRET;
 const handleAuthVerify = async (req, res, next) => {
    const token = req.headers.authorization;
    try {
-      console.log(token);
       const decoded = jwt.verify(token, SECRET);
-      req.userID = decoded.userID;
+      req.userId = decoded.userId;
       next();
    } catch (error) {
-      console.log(error);
       res.status(401).json({
+         success: false,
          message: 'You do not have permissions to view this content',
          errMessage: error.message,
       });

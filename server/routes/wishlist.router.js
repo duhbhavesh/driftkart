@@ -9,16 +9,26 @@ const {
    addWishlistItem,
    deleteWishlistItem,
 } = require('../controllers/wishlist.controller');
+const {
+   handleAuthVerify,
+} = require('../middlewares/handleAuthVerify.middleware');
+
 const router = express.Router();
 
-router.param('userId', getUserById);
-router.param('userId', getWishlistById);
 router.param('productId', getProductById);
 
-router.route('/:userId/wishlist').get(getWishlistItems);
-router
-   .route('/:userId/wishlist/:productId')
-   .post(addWishlistItem)
-   .delete(deleteWishlistItem);
+router.get('/wishlist', handleAuthVerify, getWishlistById, getWishlistItems);
+router.post(
+   '/wishlist/:productId',
+   handleAuthVerify,
+   getWishlistById,
+   addWishlistItem,
+);
+router.delete(
+   '/wishlist/:productId',
+   handleAuthVerify,
+   getWishlistById,
+   deleteWishlistItem,
+);
 
 module.exports = router;

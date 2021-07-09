@@ -2,24 +2,26 @@ const _ = require('lodash');
 
 const getWishlistItems = async (req, res) => {
    let { wishlist } = req;
+
    try {
       wishlist = await wishlist
          .populate('wishlistItems.product')
          .execPopulate();
-      res.json({ success: true, response: wishlist });
-   } catch (err) {
+      console.log('wishlist', wishlist.wishlistItems);
+      res.json({ success: true, response: wishlist.wishlistItems });
+   } catch (error) {
       res.json({
          success: false,
          message: 'Unable to retrieve wishlist items',
-         err: err.message,
+         errorMessage: error.message,
       });
    }
 };
 
 const addWishlistItem = async (req, res) => {
-   let { product } = req;
-   let { wishlist } = req;
    try {
+      let { product } = req;
+      let { wishlist } = req;
       if (!wishlist.wishlistItems.id(product._id)) {
          wishlist = _.extend(wishlist, {
             wishlistItems: _.concat(wishlist.wishlistItems, {
@@ -32,36 +34,37 @@ const addWishlistItem = async (req, res) => {
          wishlist = await wishlist
             .populate('wishlistItems.product')
             .execPopulate();
-         res.json({ success: true, response: wishlist });
+         res.json({ success: true, response: wishlist.wishlistItems });
       } else {
          res.json({
             success: true,
-            response: 'Product already exist in the wishlist',
+            message: 'Product already exist in the wishlist',
          });
       }
-   } catch (err) {
+   } catch (error) {
       res.json({
          success: false,
          message: 'Unable to add wishlist item',
+         errorMessage: error.message,
       });
    }
 };
 
 const deleteWishlistItem = async (req, res) => {
-   let { product } = req;
-   let { wishlist } = req;
    try {
+      let { product } = req;
+      let { wishlist } = req;
       await wishlist.wishlistItems.id(product._id).remove();
       await wishlist.save();
       wishlist = await wishlist
          .populate('wishlistItems.product')
          .execPopulate();
-      res.json({ success: true, response: wishlist });
-   } catch (err) {
+      res.json({ success: true, response: wishlist.wishlistItems });
+   } catch (error) {
       res.json({
          success: false,
          message: 'Unable to delete wishlist item',
-         err: err.message,
+         error: error.message,
       });
    }
 };

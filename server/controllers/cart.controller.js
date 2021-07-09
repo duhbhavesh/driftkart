@@ -1,15 +1,16 @@
 const _ = require('lodash');
 
 const getCartItems = async (req, res) => {
-   let { cart } = req;
    try {
+      let { cart } = req;
       cart = await cart.populate('cartItems.product').execPopulate();
-      res.json({ success: true, response: cart });
-   } catch (err) {
-      res.json({
+      console.log(cart.cartItems);
+      res.json({ success: true, response: cart.cartItems });
+   } catch (error) {
+      res.status(400).json({
          success: false,
-         message: 'Unable to retrive cart items',
-         err: err.message,
+         message: 'Unable to retrieve Cart Items',
+         errorMessage: error.message,
       });
    }
 };
@@ -28,18 +29,18 @@ const addCartItem = async (req, res) => {
          });
          cart = await cart.save();
          cart = await cart.populate('cartItems.product').execPopulate();
-         res.json({ success: true, response: cart });
+         res.json({ success: true, response: cart.cartItems });
       } else {
          res.json({
-            success: true,
+            success: false,
             response: 'Product already exist in the cart',
          });
       }
-   } catch (err) {
+   } catch (error) {
       res.json({
          success: false,
          message: 'Unable to add cart item',
-         err: err.message,
+         errorMessage: error.message,
       });
    }
 };
@@ -51,12 +52,12 @@ const deleteCartItem = async (req, res) => {
       await cart.cartItems.id(product._id).remove();
       await cart.save();
       cart = await cart.populate('cartItems.product').execPopulate();
-      res.json({ success: true, response: cart });
-   } catch (err) {
+      res.json({ success: true, response: cart.cartItems });
+   } catch (error) {
       res.json({
          success: false,
          message: 'Unable to delete cart item',
-         err: err.message,
+         errorMessage: error.message,
       });
    }
 };

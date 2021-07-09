@@ -11,9 +11,10 @@ const productsRouter = require('./routes/products.router');
 const wishlistRouter = require('./routes/wishlist.router');
 const cartRouter = require('./routes/cart.router');
 
-const { handleAuthVerify } = require('./middlewares/handleAuthVerify.middleware');
 const { handleError } = require('./middlewares/handleError.middleware');
-const { handleRouteNotFound } = require('./middlewares/handleRouteNotFound.middleware');
+const {
+   handleRouteNotFound,
+} = require('./middlewares/handleRouteNotFound.middleware');
 
 const app = express();
 
@@ -30,7 +31,6 @@ app.get('/', (req, res) => {
 app.use('/api', productsRouter);
 app.use('/api', authRouter);
 
-app.use(handleAuthVerify);
 app.use('/api', usersRouter);
 app.use('/api', cartRouter);
 app.use('/api', wishlistRouter);
