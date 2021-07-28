@@ -29,8 +29,10 @@ export const ProductItem = ({ product }) => {
             <div className='product-details'>
                <div className='product-price'>
                   <p className='new-price'>
-                     ₹{product.price}
-                     <span className='old-price'>₹ {product.price}</span>
+                     ₹{product.price.toLocaleString()}
+                     <span className='old-price'>
+                        ₹ {product.price.toLocaleString()}
+                     </span>
                   </p>
                </div>
                <div className='cart'>
