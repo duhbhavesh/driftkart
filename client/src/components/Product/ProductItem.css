@@ -5,6 +5,7 @@
    border: 1px solid #d3d7e1;
    border-radius: 0;
    min-height: 315px;
+   padding: 0.5rem;
 }
 
 .product-card {
@@ -27,9 +28,21 @@
    margin-bottom: 0.8rem;
 }
 
+.product-image {
+   height: 160px;
+   width: 150px;
+   margin: 0 auto;
+   margin-top: 2rem;
+   /* margin-bottom: rem; */
+}
+
 .product #product-title,
 .product-price .new-price {
    font-size: 0.7rem;
+}
+
+.old-price {
+   margin-left: 0.3rem;
 }
 
 .product .btn-cart {
@@ -58,6 +71,15 @@
       border: none;
       margin-top: 2rem;
       border-radius: 0.6rem;
+      padding: 1rem;
+   }
+
+   .product-image {
+      height: 155px;
+      width: 140px;
+      margin: 0 auto;
+      margin-top: 1rem;
+      margin-bottom: 2.5rem;
    }
 }
 
@@ -66,5 +88,11 @@
       margin: 0 auto;
       margin-top: 2rem;
       width: 24%;
+   }
+}
+
+@media (min-width: 1280px) {
+   .product-image {
+      width: 160px;
    }
 }
