@@ -4,16 +4,6 @@ export const DesktopNavDataLeft = [
       link: '/products',
       name: 'Products',
    },
-   {
-      index: 2,
-      link: '/',
-      name: 'Sale',
-   },
-   {
-      index: 3,
-      link: '/',
-      name: 'Offers',
-   },
 ];
 
 export const DesktopNavDataRight = [

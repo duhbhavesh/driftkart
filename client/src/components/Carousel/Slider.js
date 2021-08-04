@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SliderData } from './SliderData';
 import './Slider.css';
+import { Link } from 'react-router-dom';
 
 const Slider = ({ slides }) => {
    const [current, setCurrent] = useState(0);
@@ -28,7 +29,13 @@ const Slider = ({ slides }) => {
                   className={index === current ? 'slide active' : 'slide'}
                   key={index}>
                   {index === current && (
-                     <img src={slide.image} alt={slide.alt} className='image' />
+                     <Link to='/products'>
+                        <img
+                           src={slide.image}
+                           alt={slide.alt}
+                           className='image'
+                        />
+                     </Link>
                   )}
                </div>
             );

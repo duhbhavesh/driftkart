@@ -1,7 +1,17 @@
 import { SidebarData } from '../Sidebar/SidebarData';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import toast from 'react-hot-toast';
 
 export const Sidebar = ({ showSidebar, setShowSidebar }) => {
+   const {
+      authState: { token },
+      authDispatch,
+      handleUserLogout,
+   } = useAuth();
+
+   const notify = (message) => toast.success(message);
+
    return (
       <>
          <div
@@ -15,10 +25,21 @@ export const Sidebar = ({ showSidebar, setShowSidebar }) => {
                <div className='container-sidebar'>
                   <div className='sidebar-top'>
                      <div className='sidebar-login'>
-                        <a className='btn btn-primary' href='/'>
-                           <i className='fas fas-sidebar fas-sidebar-user fa-user'></i>
-                           Log In
-                        </a>
+                        {token ? (
+                           <button
+                              onClick={() =>
+                                 handleUserLogout(authDispatch, notify)
+                              }
+                              className='btn btn-primary'>
+                              <i className='fas fas-sidebar fas-sidebar-user fa-user'></i>
+                              Log Out
+                           </button>
+                        ) : (
+                           <Link className='btn btn-primary' to='/login'>
+                              <i className='fas fas-sidebar fas-sidebar-user fa-user'></i>
+                              Log In
+                           </Link>
+                        )}
                      </div>
 
                      <div className='sidebar-close'>

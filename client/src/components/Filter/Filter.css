@@ -9,7 +9,7 @@
    font-size: 1rem;
    text-transform: uppercase;
    font-weight: 600;
-   margin-bottom: 1rem;
+   margin-right: 0.6rem;
 }
 
 .filter-sm-sort {
@@ -81,7 +81,6 @@
 .filter-input-sm {
    border-bottom: 1px solid #d3d7e1;
    padding-top: 0.4rem;
-   padding-bottom: 0.4rem;
 }
 
 .filter-input-radio,
@@ -105,6 +104,28 @@
    opacity: 1;
 }
 
+.filter-sm-box-title {
+   font-size: 0.9rem;
+   font-weight: 600;
+}
+
+.filter-sm-box {
+   margin-bottom: 0.8rem;
+}
+
+.filter-sm-heading-box {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   margin-bottom: 1rem;
+   align-items: center;
+}
+
+.filter-sm-menu-box {
+   display: flex;
+   align-items: center;
+}
+
 @media (min-width: 840px) {
    .filter-sm {
       display: none;
@@ -118,8 +139,7 @@
       position: sticky;
       position: -webkit-sticky;
       top: 6rem;
-      overflow: auto;
-      height: 80vh;
+      height: 90vh;
       border-radius: 5px;
       background-color: rgba(253, 253, 254, 1);
       border: 1px solid #d3d7e1;
@@ -138,5 +158,23 @@
       text-transform: uppercase;
       font-weight: 600;
       margin-bottom: 0.5rem;
+   }
+
+   .filter-heading-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+   }
+
+   .filter-heading {
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+   }
+
+   .btn-clear {
+      font-size: 0.7rem;
+      cursor: pointer;
    }
 }

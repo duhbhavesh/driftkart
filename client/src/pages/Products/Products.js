@@ -4,15 +4,26 @@ import {
    getSortedData,
    getFilteredData,
    Filter,
+   getFilteredCategory,
+   getFilteredRating,
 } from '../../components/Filter/Filter';
 import './Products.css';
 
 export const Products = () => {
    const { state } = useData();
-   const { products, sortBy, showInventory, showFastDelivery } = state;
+   const {
+      products,
+      sortBy,
+      showInventory,
+      showFastDelivery,
+      categories,
+      ratings,
+   } = state;
 
    const sortedData = getSortedData(products, sortBy);
-   const filteredData = getFilteredData(sortedData, {
+   const filteredByCategory = getFilteredCategory(sortedData, categories);
+   const filteredByRating = getFilteredRating(filteredByCategory, ratings);
+   const filteredData = getFilteredData(filteredByRating, {
       showInventory,
       showFastDelivery,
    });
@@ -23,7 +34,7 @@ export const Products = () => {
          </div>
          <div className='wrapper-products'>
             <div className='row products'>
-               {filteredData.map((product) => {
+               {filteredData?.map((product) => {
                   return <ProductItem key={product.id} product={product} />;
                })}
             </div>

@@ -3,13 +3,15 @@ import { DataReducer } from '../reducer/DataReducer';
 
 export const DataContext = createContext();
 
-const initialState = {
+export const initialState = {
    products: [],
    wishList: [],
    cart: [],
    sortBy: null,
    showInventory: true,
    showFastDelivery: false,
+   categories: [],
+   ratings: [],
 };
 
 export const DataProvider = ({ children }) => {

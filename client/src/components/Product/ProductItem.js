@@ -22,7 +22,7 @@ export const ProductItem = ({ product }) => {
                      <i className='fas fa-star'></i>
                   </span>
                   <span>
-                     <strong>{product.ratings}.0</strong>/5.0
+                     <strong>{product.rating}.0</strong>/5.0
                   </span>
                </div>
             </div>

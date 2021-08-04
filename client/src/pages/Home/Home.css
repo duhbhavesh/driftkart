@@ -32,4 +32,9 @@
    .categories {
       flex-direction: row;
    }
+
+   .category-image {
+      width: 350px;
+      height: 305px;
+   }
 }

@@ -1,27 +1,18 @@
 export const SliderData = [
    {
-      image:
-         'https://rukminim1.flixcart.com/flap/1688/280/image/4d6f68fd7c030233.jpg?q=50',
+      image: 'https://rukminim1.flixcart.com/flap/1800/1800/image/322183a2d81a09fb.jpg?q=80',
       alt: 'Banner Image',
    },
    {
-      image:
-         'https://rukminim1.flixcart.com/flap/1688/280/image/b2ebeaa38d2056bc.jpg?q=50',
+      image: 'https://rukminim1.flixcart.com/flap/1800/1800/image/fd8558883c59536c.jpg?q=80',
       alt: 'Banner Image',
    },
    {
-      image:
-         'https://rukminim1.flixcart.com/flap/1688/280/image/c9b64a2487babb69.jpg?q=50',
+      image: 'https://rukminim1.flixcart.com/flap/1800/1800/image/ce8cc86f5e1ab015.jpg?q=80',
       alt: 'Banner Image',
    },
    {
-      image:
-         'https://rukminim1.flixcart.com/flap/1688/280/image/09091f15283a4239.jpg?q=50',
-      alt: 'Banner Image',
-   },
-   {
-      image:
-         'https://rukminim1.flixcart.com/flap/1688/280/image/2588832781aafce3.jpg?q=50',
+      image: 'https://rukminim1.flixcart.com/flap/1800/1800/image/14786335a9e6a284.jpg?q=80',
       alt: 'Banner Image',
    },
 ];

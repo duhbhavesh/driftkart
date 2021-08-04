@@ -1,3 +1,5 @@
+import { initialState } from '../context/DataContext';
+
 export const DataReducer = (state, { type, payload }) => {
    switch (type) {
       case 'SET_PRODUCTS':
@@ -61,6 +63,29 @@ export const DataReducer = (state, { type, payload }) => {
 
       case 'TOGGLE_DELIVERY':
          return { ...state, showFastDelivery: !state.showFastDelivery };
+
+      case 'SET_CATEGORY':
+         return { ...state, categories: [...state.categories, payload] };
+
+      case 'REMOVE_CATEGORY':
+         return {
+            ...state,
+            categories: state.categories.filter(
+               (category) => category !== payload,
+            ),
+         };
+
+      case 'SET_RATING':
+         return { ...state, ratings: [...state.ratings, payload] };
+
+      case 'REMOVE_RATING':
+         return {
+            ...state,
+            ratings: state.ratings.filter((rating) => rating !== payload),
+         };
+
+      case 'RESET_FILTERS':
+         return initialState;
 
       default:
          break;
