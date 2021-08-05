@@ -138,8 +138,9 @@
       width: 100%;
       position: sticky;
       position: -webkit-sticky;
+      overflow: auto;
       top: 6rem;
-      height: 90vh;
+      height: 100vh;
       border-radius: 5px;
       background-color: rgba(253, 253, 254, 1);
       border: 1px solid #d3d7e1;

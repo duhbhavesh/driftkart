@@ -85,7 +85,14 @@ export const DataReducer = (state, { type, payload }) => {
          };
 
       case 'RESET_FILTERS':
-         return initialState;
+         return {
+            ...state,
+            sortBy: null,
+            showInventory: true,
+            showFastDelivery: false,
+            categories: [],
+            ratings: [],
+         };
 
       default:
          break;
