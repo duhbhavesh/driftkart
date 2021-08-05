@@ -1,11 +1,3 @@
-export const DesktopNavDataLeft = [
-   {
-      index: 1,
-      link: '/products',
-      name: 'Products',
-   },
-];
-
 export const DesktopNavDataRight = [
    {
       index: 1,

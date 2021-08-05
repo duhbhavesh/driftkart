@@ -29,7 +29,7 @@ const Slider = ({ slides }) => {
                   className={index === current ? 'slide active' : 'slide'}
                   key={index}>
                   {index === current && (
-                     <Link to='/products'>
+                     <Link to='/shop'>
                         <img
                            src={slide.image}
                            alt={slide.alt}

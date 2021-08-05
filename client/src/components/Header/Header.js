@@ -1,12 +1,13 @@
 import { useData } from '../../context/DataContext';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { DesktopNavDataLeft } from './HeaderData';
+import { Link, useNavigate } from 'react-router-dom';
 import { Sidebar } from '../Sidebar/Sidebar';
 import Logo from '../../drift.svg';
 import './Header.css';
 import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
+import { SearchBarDesktop } from '../SearchBar/SearchBarDesktop';
+import { SideBarMobile } from '../SearchBar/SearchBarMobile';
 
 export const Header = () => {
    const { state } = useData();
@@ -17,6 +18,9 @@ export const Header = () => {
       authDispatch,
    } = useAuth();
    const [showSidebar, setShowSidebar] = useState(false);
+   const [searchInput, setSearchInput] = useState('');
+
+   const navigate = useNavigate();
    const notify = (message) => toast.success(message);
 
    const handleSidebar = () => {
@@ -90,17 +94,11 @@ export const Header = () => {
                      )}
                   </ul>
                </div>
-               <form className='form-inline'>
-                  <input
-                     className='input-box form-control'
-                     type='search'
-                     placeholder='Search for products...'
-                     aria-label='Search'
-                  />
-                  <button className='btn btn-search' type='submit'>
-                     <i className='fas fa-search'></i>
-                  </button>
-               </form>
+               <SideBarMobile
+                  searchInput={searchInput}
+                  setSearchInput={setSearchInput}
+                  navigate={navigate}
+               />
             </nav>
 
             <nav className='navbar navbar-md'>
@@ -109,31 +107,22 @@ export const Header = () => {
                   <span>Driftkart</span>
                </Link>
 
-               <ul className='nav-items'>
-                  {DesktopNavDataLeft.map((item) => (
-                     <li key={item.index} className='nav-item navbar-link'>
-                        <Link to={item.link} className='nav-item-link'>
-                           {item.name}
-                        </Link>
-                     </li>
-                  ))}
-               </ul>
+               <SearchBarDesktop
+                  searchInput={searchInput}
+                  setSearchInput={setSearchInput}
+                  navigate={navigate}
+               />
 
-               <form className='form-inline'>
-                  <input
-                     className='input-box form-control'
-                     type='search'
-                     placeholder='Search for products...'
-                     aria-label='Search'
-                  />
-                  <button className='btn btn-search' type='submit'>
-                     <i className='fas fa-search'></i>
-                  </button>
-               </form>
                <ul className='nav-items'>
                   <li className='nav-item navbar-link'>
+                     <Link to='/shop' className='nav-item-link'>
+                        <i title='shop' className='fas fa-store'></i>
+                     </Link>
+                  </li>
+
+                  <li className='nav-item navbar-link'>
                      <Link to='/wishlist' className='nav-item-link'>
-                        <i className='fas fa-heart'></i>
+                        <i title='wishlist' className='fas fa-heart'></i>
                         {token && (
                            <span className='badge badge-error badge-top'>
                               {wishList.length}
@@ -143,7 +132,7 @@ export const Header = () => {
                   </li>
                   <li className='nav-item navbar-link'>
                      <Link to='/cart' className='nav-item-link'>
-                        <i className='fas fa-shopping-cart'></i>
+                        <i title='cart' className='fas fa-shopping-cart'></i>
                         {token && (
                            <span className='badge badge-error badge-top'>
                               {cart.length}
@@ -173,7 +162,6 @@ export const Header = () => {
                </ul>
             </nav>
 
-            {/* Mobile Sidebar */}
             <Sidebar
                showSidebar={showSidebar}
                setShowSidebar={setShowSidebar}

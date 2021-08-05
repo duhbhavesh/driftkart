@@ -1,15 +1,15 @@
 export const SidebarData = [
    {
       index: 1,
-      link: '/products',
-      title: 'Products',
-      iconClassName: 'fas fa-list',
+      link: '/shop',
+      title: 'Shop',
+      iconClassName: 'fas fa-store',
    },
    {
       index: 2,
       link: '/cart',
       title: 'Cart',
-      iconClassName: 'fas fa-shopping-bag',
+      iconClassName: 'fas fa-shopping-cart',
    },
    {
       index: 3,

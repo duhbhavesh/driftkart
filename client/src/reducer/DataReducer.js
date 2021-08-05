@@ -1,5 +1,3 @@
-import { initialState } from '../context/DataContext';
-
 export const DataReducer = (state, { type, payload }) => {
    switch (type) {
       case 'SET_PRODUCTS':

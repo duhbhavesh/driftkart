@@ -1,0 +1,16 @@
+.zero-search-results {
+   display: flex;
+   background-color: #fff;
+   width: 80%;
+   padding: 2rem;
+   margin: 0 auto;
+   margin-top: 4rem;
+   text-align: center;
+   flex-direction: column;
+}
+
+@media (min-width: 840px) {
+   .zero-search-results {
+      padding: 5rem;
+   }
+}

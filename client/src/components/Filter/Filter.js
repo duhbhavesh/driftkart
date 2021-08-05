@@ -112,7 +112,7 @@ export const Filter = () => {
                <div className='filter-inputs'>
                   {categories.map((category) => {
                      return (
-                        <div className='filter-input'>
+                        <div key={category} className='filter-input'>
                            <input
                               onChange={() => handleCategory(category)}
                               checked={state.categories.includes(category)}
@@ -132,7 +132,7 @@ export const Filter = () => {
                <div className='filter-inputs'>
                   {ratings.map((rating) => {
                      return (
-                        <div className='filter-input'>
+                        <div key={rating} className='filter-input'>
                            <input
                               onChange={() => handleRating(rating)}
                               checked={state.ratings.includes(rating)}
@@ -248,7 +248,7 @@ export const Filter = () => {
                      <div className='filter-sm-box-title'>Categories</div>
                      {categories.map((category) => {
                         return (
-                           <div className='filter-input-sm'>
+                           <div key={category} className='filter-input-sm'>
                               <input
                                  onChange={() => handleCategory(category)}
                                  checked={state.categories.includes(category)}
@@ -266,7 +266,7 @@ export const Filter = () => {
                      <div className='filter-sm-box-title'>Ratings</div>
                      {ratings.map((rating) => {
                         return (
-                           <div className='filter-input-sm'>
+                           <div key={rating} className='filter-input-sm'>
                               <input
                                  onChange={() => handleRating(rating)}
                                  checked={state.ratings.includes(rating)}
