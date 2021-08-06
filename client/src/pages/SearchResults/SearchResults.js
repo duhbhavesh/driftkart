@@ -32,7 +32,8 @@ export const SearchResults = () => {
    const searchResults = filteredData.filter(
       (item) =>
          item.name.toLowerCase().includes(query.toLowerCase()) ||
-         item.brand.toLowerCase().includes(query.toLowerCase()),
+         item.brand.toLowerCase().includes(query.toLowerCase()) ||
+         item.category.toLowerCase().includes(query.toLowerCase()),
    );
 
    return (

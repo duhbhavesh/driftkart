@@ -5,13 +5,20 @@ body {
    position: relative;
 }
 
-.container {
-   max-width: 1400px;
+a:focus,
+a:hover,
+a:active,
+a.active .container {
+   text-decoration: none;
 }
 
 .row {
    flex-direction: row;
    flex-wrap: wrap;
+}
+
+.btn {
+   margin: 0;
 }
 
 @media (min-width: 768px) {

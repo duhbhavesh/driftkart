@@ -1,7 +1,7 @@
 .cart-summary {
    margin: 1rem;
    padding: 1rem;
-   background-color: #fff;
+   background-color: #f7f7f7;
    border-radius: 5px;
    position: relative;
    transition: all 400ms ease-in-out;

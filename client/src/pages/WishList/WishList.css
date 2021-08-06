@@ -1,5 +1,9 @@
 .wishlist-sec {
    min-height: 70vh;
+   background-color: #fff;
+   padding: 1rem;
+   margin-top: 1rem;
+   margin-bottom: 1rem;
 }
 
 .wishlist-heading,
@@ -23,5 +27,13 @@
    .wrapper-wishlist {
       flex-direction: row;
       flex-wrap: wrap;
+   }
+}
+
+@media (min-width: 960px) {
+   .wishlist-sec {
+      margin: 2rem;
+      margin-top: 2rem;
+      padding-bottom: 4rem;
    }
 }

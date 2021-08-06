@@ -25,6 +25,7 @@
 
 .product-heading {
    line-height: 0.6;
+   margin-top: 0.8rem;
    margin-bottom: 0.8rem;
 }
 
@@ -33,12 +34,15 @@
    width: 150px;
    margin: 0 auto;
    margin-top: 2rem;
-   /* margin-bottom: rem; */
 }
 
 .product #product-title,
 .product-price .new-price {
    font-size: 0.7rem;
+}
+
+#product-title:hover {
+   color: #2553e3;
 }
 
 .old-price {
