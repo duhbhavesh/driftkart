@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router';
 import { AddToCartButton } from '../Buttons/AddToCartButton';
+import { WishListButton } from '../Buttons/WishlistButton';
 import './ProductDetail.css';
 
 export const ProductDetail = ({ product }) => {
@@ -37,11 +38,7 @@ export const ProductDetail = ({ product }) => {
                </p>
                <div className='product-actions'>
                   <AddToCartButton key={product.id} product={product} />
-                  <button
-                     className='btn btn-secondary'
-                     onClick={() => navigate(-1)}>
-                     Go Back
-                  </button>
+                  <WishListButton key={product.id} product={product} />
                </div>
             </div>
          </div>

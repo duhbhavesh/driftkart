@@ -1,11 +1,11 @@
-import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router';
-import { useAuth } from '../../context/AuthContext';
 import { useData } from '../../context/DataContext';
-import { handleToggleWishList } from '../../utils/serverRequest';
 import { checkItem } from '../../utils/utils';
+import { handleToggleWishList } from '../../utils/serverRequest';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useAuth } from '../../context/AuthContext';
 
-export const WishListButton = ({ product }) => {
+export const WishlistButtonIcon = ({ product }) => {
    const navigate = useNavigate();
    const { state, dispatch } = useData();
    const {
@@ -23,7 +23,6 @@ export const WishListButton = ({ product }) => {
    return (
       <>
          <button
-            className='btn btn-secondary'
             onClick={() =>
                token
                   ? handleToggleWishList({
@@ -34,13 +33,15 @@ export const WishListButton = ({ product }) => {
                        token,
                     })
                   : handleAddItemError()
-            }>
-            <span>
-               <i className='fas fa-heart fa-heart-product fa-heart-product-md'></i>
-            </span>
-            {!checkItem(wishList, product.id)
-               ? 'Add to Wishlist'
-               : 'Remove from Wishlist'}
+            }
+            className='btn btn-square btn-circle btn-top-right btn-wishlist'
+            type='button'>
+            <i
+               className={
+                  !checkItem(wishList, product.id)
+                     ? 'far fa-heart fa-heart-product'
+                     : 'fas fa-heart fa-heart-product active'
+               }></i>
          </button>
       </>
    );

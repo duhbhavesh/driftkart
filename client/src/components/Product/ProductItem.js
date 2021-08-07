@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { AddToCartButton } from '../Buttons/AddToCartButton';
-import { WishListButton } from '../Buttons/WishlistButton';
+import { WishlistButtonIcon } from '../Buttons/WishlistButtonIcon';
 import './ProductItem.css';
 
 export const ProductItem = ({ product }) => {
    return (
       <>
          <div className='card product product-card'>
-            <WishListButton product={product} />
+            <WishlistButtonIcon product={product} />
             <div className='product-image'>
                <img className='card-img' src={product.image} alt='' />
             </div>

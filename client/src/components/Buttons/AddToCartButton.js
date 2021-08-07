@@ -39,6 +39,7 @@ export const AddToCartButton = ({ product }) => {
             }}
             className='btn btn-primary btn-cart'
             type='button'>
+            <i className='fas fa-shopping-cart fa-shopping-cart-custom'></i>
             {token
                ? checkItem(state?.cart, product?.id)
                   ? 'Go to Cart'

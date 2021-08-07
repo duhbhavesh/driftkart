@@ -12,7 +12,7 @@ export const WishListItem = ({ product }) => {
          </div>
          <div className='product-details'>
             <h3 className='product-heading'>
-               <Link to='#' id='product-title'>
+               <Link to={`/product/${product.id}`} id='product-title'>
                   {product?.name}
                </Link>
             </h3>

@@ -63,6 +63,15 @@
    color: #ff4d4f;
 }
 
+.fa-heart-product-md {
+   color: #2553e3;
+   margin-right: 0.4rem;
+}
+
+.fa-shopping-cart-custom {
+   margin-right: 0.4rem;
+}
+
 @media (min-width: 600px) {
    .fa-star {
       font-size: 0.8rem;
@@ -84,6 +93,17 @@
       margin: 0 auto;
       margin-top: 1rem;
       margin-bottom: 2.5rem;
+   }
+
+   .fa-heart-product-md {
+      color: #2553e3;
+      font-size: 0.8rem;
+      margin-right: 0.5rem;
+   }
+
+   .fa-shopping-cart-custom {
+      font-size: 0.8rem;
+      margin-right: 0.5rem;
    }
 }
 
