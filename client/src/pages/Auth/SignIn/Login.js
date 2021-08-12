@@ -1,19 +1,17 @@
 import { useState } from 'react';
 import { useAuth } from '../../../context/AuthContext';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Login.css';
 import toast from 'react-hot-toast';
 
 export const Login = () => {
    const { handleUserLogin, authDispatch } = useAuth();
-   const { state } = useLocation();
    const [user, setUser] = useState({
       email: 'test@gmail.com',
       password: 'test123',
    });
    const [serverError, setServerError] = useState('');
    const notify = (message) => toast.success(message);
-   const navigateToPath = state?.from ? state.from : '/';
 
    const handleOnChangeInput = (e) => {
       setUser({ ...user, [e.target.name]: e.target.value });
@@ -21,17 +19,10 @@ export const Login = () => {
 
    const handleFormSubmit = async () => {
       setServerError('');
-      const response = await handleUserLogin(
-         user,
-         authDispatch,
-         navigateToPath,
-         notify,
-      );
-
+      const response = await handleUserLogin(user, authDispatch, notify);
       if (response.status === 200) {
          console.log('Logged in successfully');
       }
-
       if (response.status !== 200) {
          setServerError(response.response.data.error);
       }
