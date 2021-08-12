@@ -3,8 +3,10 @@ import { useEffect } from 'react';
 import { useAuth } from './context/AuthContext';
 import { useData } from './context/DataContext';
 import {
+   handleFetchAddress,
    handleFetchCart,
    handleFetchProducts,
+   handleFetchUserDetails,
    handleFetchWishlist,
 } from './utils/serverRequest';
 import { Toast } from './components/Toast/Toast';
@@ -17,6 +19,7 @@ const App = () => {
    const { dispatch } = useData();
    const {
       authState: { token },
+      authDispatch,
    } = useAuth();
 
    useEffect(() => {
@@ -27,8 +30,10 @@ const App = () => {
       if (token) {
          handleFetchCart(dispatch, token);
          handleFetchWishlist(dispatch, token);
+         handleFetchUserDetails(authDispatch, token);
+         handleFetchAddress(dispatch, token);
       }
-   }, [dispatch, token]);
+   }, [dispatch, authDispatch, token]);
 
    return (
       <div className='App'>

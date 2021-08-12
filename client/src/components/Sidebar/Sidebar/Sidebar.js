@@ -1,6 +1,6 @@
-import { SidebarData } from '../Sidebar/SidebarData';
+import { SidebarData } from './SidebarData';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 import toast from 'react-hot-toast';
 
 export const Sidebar = ({ showSidebar, setShowSidebar }) => {

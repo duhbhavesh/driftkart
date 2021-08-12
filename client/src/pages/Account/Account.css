@@ -1,0 +1,89 @@
+.container-profile {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   background-color: #fff;
+   margin: 1rem;
+   padding: 1rem;
+}
+
+.card-profile {
+   border-radius: 0.3rem;
+   padding-bottom: 2rem;
+}
+
+.profile-info {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   padding: 0.5rem;
+   width: 100%;
+}
+
+.profile-label {
+   display: flex;
+   flex-direction: column;
+   font-weight: 500;
+   width: 100%;
+   align-items: center;
+}
+
+.title-profile {
+   font-size: 1.3rem;
+   padding: 0.8rem;
+}
+
+.profile-input {
+   width: 100%;
+   border-radius: 0.1rem;
+   display: inline-block;
+   background-color: #f7f7f7;
+   padding: 0.3rem;
+}
+
+.profile-label-title {
+   display: inline-block;
+   padding: 0.3rem;
+   width: 100%;
+   text-align: left;
+}
+
+.btn-account-auth {
+   margin-top: 2rem;
+}
+
+@media (min-width: 840px) {
+   .wrapper-account {
+      margin: 1rem;
+      padding: 1rem;
+      width: 80%;
+   }
+
+   .wrapper-sidebar {
+      margin: 1rem;
+      width: 25%;
+   }
+
+   .container-profile {
+      margin-top: 3rem;
+   }
+
+   .profile-label {
+      flex-direction: row;
+      width: 100%;
+      margin-left: 1rem;
+   }
+
+   .profile-label-title {
+      width: 20%;
+   }
+
+   .profile-input {
+      width: 70%;
+      padding: 0.3rem;
+   }
+
+   .btn-account-auth {
+      margin-left: 1.5rem;
+   }
+}

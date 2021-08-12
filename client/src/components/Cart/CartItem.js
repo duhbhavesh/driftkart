@@ -28,8 +28,8 @@ export const CartItem = ({ product, quantity }) => {
                <div className='cart-item-quantity'>
                   <button
                      onClick={() => handleDecrementQty(product)}
-                     disabled={quantity < 1}
-                     className='btn btn-square cart-item-quantity-dec'>
+                     className='btn btn-square cart-item-quantity-dec'
+                     disabled={quantity <= 1}>
                      -
                   </button>
                   <span className='cart-item-qty'>{quantity}</span>

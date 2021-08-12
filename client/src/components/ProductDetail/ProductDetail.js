@@ -1,11 +1,8 @@
-import { useNavigate } from 'react-router';
 import { AddToCartButton } from '../Buttons/AddToCartButton';
 import { WishListButton } from '../Buttons/WishlistButton';
 import './ProductDetail.css';
 
 export const ProductDetail = ({ product }) => {
-   const navigate = useNavigate();
-
    return (
       <>
          <div className='product-detail'>

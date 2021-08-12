@@ -1,0 +1,27 @@
+.address-card {
+   background-color: #fff;
+   border: 1px solid #e0e0e0;
+   padding: 1rem;
+   border-radius: 0.3rem;
+   margin-top: 1rem;
+}
+
+.address-details {
+   margin-top: 0.6rem;
+}
+
+.address-info {
+   margin-bottom: 0.3rem;
+}
+
+.address-bold {
+   font-weight: 600;
+}
+
+.address-buttons {
+   margin-top: 1rem;
+}
+
+.address-buttons button {
+   margin-right: 1rem;
+}

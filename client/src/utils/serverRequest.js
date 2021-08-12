@@ -16,6 +16,24 @@ export const handleFetchProducts = async (dispatch) => {
    }
 };
 
+export const handleFetchUserDetails = async (dispatch, token) => {
+   try {
+      const {
+         data: { user },
+      } = await axios({
+         method: 'GET',
+         url: `${API_ENDPOINT}/api/user`,
+         headers: {
+            Authorization: token,
+         },
+      });
+
+      dispatch({ type: 'SET_USER_DETAILS', payload: { user: user } });
+   } catch (error) {
+      console.log(error);
+   }
+};
+
 export const handleFetchCart = async (dispatch, token) => {
    try {
       const {
@@ -47,6 +65,24 @@ export const handleFetchWishlist = async (dispatch, token) => {
       });
 
       dispatch({ type: 'SET_USER_WISHLIST', payload: response });
+   } catch (error) {
+      console.log(error);
+   }
+};
+
+export const handleFetchAddress = async (dispatch, token) => {
+   try {
+      const {
+         data: { response },
+      } = await axios({
+         method: 'GET',
+         url: `${API_ENDPOINT}/api/address`,
+         headers: {
+            Authorization: token,
+         },
+      });
+
+      dispatch({ type: 'SET_USER_ADDRESS', payload: response });
    } catch (error) {
       console.log(error);
    }
@@ -246,5 +282,86 @@ export const handleMoveItemToWishlist = async ({
    } else {
       notify(`${product.name} Already present in the Wishlist`);
       handleRemoveCartItem({ state, dispatch, product, notify, token });
+   }
+};
+
+export const handleAddAddressToDB = async (
+   dispatch,
+   token,
+   address,
+   handleSuccess,
+   notify,
+) => {
+   try {
+      const {
+         data: { response },
+      } = await axios({
+         method: 'POST',
+         url: `${API_ENDPOINT}/api/address`,
+         data: {
+            currentAddress: address,
+         },
+         headers: {
+            Authorization: token,
+         },
+      });
+      handleSuccess();
+      dispatch({ type: 'SET_USER_ADDRESS', payload: response });
+      notify('New Address Added');
+   } catch (error) {
+      console.log({ error });
+   }
+};
+
+export const handleUpdateAddress = async (
+   dispatch,
+   token,
+   address,
+   editAddress,
+   handleSuccess,
+   notify,
+) => {
+   try {
+      const {
+         data: { response },
+      } = await axios({
+         method: 'POST',
+         url: `${API_ENDPOINT}/api/address/${editAddress}`,
+         data: {
+            currentAddress: address,
+         },
+         headers: {
+            Authorization: token,
+         },
+      });
+      handleSuccess();
+      dispatch({ type: 'SET_USER_ADDRESS', payload: response.addresses });
+      notify('Address Updated');
+   } catch (error) {
+      console.log({ error });
+   }
+};
+
+export const handleRemoveAddress = async (
+   dispatch,
+   token,
+   addressId,
+   notify,
+) => {
+   try {
+      const {
+         data: { response },
+      } = await axios({
+         method: 'DELETE',
+         url: `${API_ENDPOINT}/api/address/${addressId}`,
+
+         headers: {
+            Authorization: token,
+         },
+      });
+      dispatch({ type: 'SET_USER_ADDRESS', payload: response });
+      notify('Address Removed');
+   } catch (error) {
+      console.log({ error });
    }
 };

@@ -8,6 +8,8 @@ import { WishList } from '../pages/WishList/WishList';
 import { Cart } from '../pages/Cart/Cart';
 import { Signup } from '../pages/Auth/SignUp/Signup';
 import { Login } from '../pages/Auth/SignIn/Login';
+import { Account } from '../pages/Account/Account';
+import { Address } from '../pages/Account/Address/Address';
 
 export const Routes = () => {
    return (
@@ -20,6 +22,8 @@ export const Routes = () => {
 
             <PrivateRoute path='/wishlist' element={<WishList />} />
             <PrivateRoute path='/cart' element={<Cart />} />
+            <PrivateRoute path='/account' element={<Account />} />
+            <PrivateRoute path='/address' element={<Address />} />
 
             <Route path='/signup' element={<Signup />} />
             <Route path='/login' element={<Login />} />

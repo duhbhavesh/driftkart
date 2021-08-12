@@ -1,0 +1,50 @@
+.sidebar-account {
+   display: none;
+}
+
+@media (min-width: 840px) {
+   .sidebar-account {
+      display: block;
+      background-color: #fff;
+      border-radius: 0.3rem;
+      margin-top: 4rem;
+      padding: 0.8rem;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+   }
+
+   .sidebar-account-item {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+   }
+
+   .sidebar-account-link {
+      display: block;
+      color: #545e7a;
+      background-color: #f5faff;
+      font-weight: 600;
+      padding: 0.5rem;
+      width: 90%;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 1.5;
+   }
+
+   .sidebar-link-active {
+      background-color: #e0e8ff;
+      color: #4068e6;
+   }
+
+   .sidebar-heading {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 500;
+   }
+
+   a:focus,
+   a:hover,
+   a:active,
+   a.active {
+      text-decoration: none;
+   }
+}

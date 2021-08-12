@@ -12,6 +12,7 @@ export const initialState = {
    showFastDelivery: false,
    categories: [],
    ratings: [],
+   addresses: [],
 };
 
 export const DataProvider = ({ children }) => {

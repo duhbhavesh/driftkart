@@ -9,6 +9,9 @@ export const DataReducer = (state, { type, payload }) => {
       case 'SET_USER_CART':
          return { ...state, cart: payload };
 
+      case 'SET_USER_ADDRESS':
+         return { ...state, addresses: payload };
+
       case 'ADD_CART_ITEM':
          return {
             ...state,

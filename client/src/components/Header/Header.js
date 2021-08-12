@@ -1,27 +1,23 @@
 import { useData } from '../../context/DataContext';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Sidebar } from '../Sidebar/Sidebar';
+import { Sidebar } from '../Sidebar/Sidebar/Sidebar';
 import Logo from '../../drift.svg';
-import './Header.css';
 import { useAuth } from '../../context/AuthContext';
-import toast from 'react-hot-toast';
 import { SearchBarDesktop } from '../SearchBar/SearchBarDesktop';
 import { SideBarMobile } from '../SearchBar/SearchBarMobile';
+import './Header.css';
 
 export const Header = () => {
    const { state } = useData();
    const { wishList, cart } = state;
    const {
       authState: { token },
-      handleUserLogout,
-      authDispatch,
    } = useAuth();
    const [showSidebar, setShowSidebar] = useState(false);
    const [searchInput, setSearchInput] = useState('');
 
    const navigate = useNavigate();
-   const notify = (message) => toast.success(message);
 
    const handleSidebar = () => {
       setShowSidebar(!showSidebar);
@@ -73,25 +69,11 @@ export const Header = () => {
                            )}
                         </Link>
                      </li>
-                     {token ? (
-                        <li className='nav-item navbar-link'>
-                           <button
-                              className='btn btn-primary btn-auth'
-                              onClick={() =>
-                                 handleUserLogout(authDispatch, notify)
-                              }>
-                              Log Out
-                           </button>
-                        </li>
-                     ) : (
-                        <li className='nav-item navbar-link'>
-                           <Link to='/login' className='nav-item-link'>
-                              <button className='btn btn-primary btn-auth'>
-                                 Log In
-                              </button>
-                           </Link>
-                        </li>
-                     )}
+                     <li className='nav-item navbar-link'>
+                        <Link to='/account' className='nav-item-link'>
+                           <i title='account' className='fas fa-user'></i>
+                        </Link>
+                     </li>
                   </ul>
                </div>
                <SideBarMobile
@@ -140,25 +122,11 @@ export const Header = () => {
                         )}
                      </Link>
                   </li>
-                  {token ? (
-                     <li className='nav-item navbar-link'>
-                        <button
-                           className='btn btn-primary btn-auth'
-                           onClick={() =>
-                              handleUserLogout(authDispatch, notify)
-                           }>
-                           Log Out
-                        </button>
-                     </li>
-                  ) : (
-                     <li className='nav-item navbar-link'>
-                        <Link to='/login' className='nav-item-link'>
-                           <button className='btn btn-primary btn-auth'>
-                              Log In
-                           </button>
-                        </Link>
-                     </li>
-                  )}
+                  <li className='nav-item navbar-link'>
+                     <Link to='/account' className='nav-item-link'>
+                        <i title='account' className='fas fa-user'></i>
+                     </Link>
+                  </li>
                </ul>
             </nav>
 

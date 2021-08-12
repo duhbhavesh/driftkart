@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
 
    const initialState = {
       token: tokenDetail,
+      user: null,
    };
 
    const [authState, authDispatch] = useReducer(AuthReducer, initialState);

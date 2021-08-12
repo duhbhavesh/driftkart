@@ -7,20 +7,27 @@ export const SidebarData = [
    },
    {
       index: 2,
+      link: '/account',
+      title: 'Account',
+      iconClassName: 'fas fa-user',
+   },
+   {
+      index: 3,
+      link: '/address',
+      title: 'Addresses',
+      iconClassName: 'fas fa-home',
+   },
+
+   {
+      index: 4,
       link: '/cart',
       title: 'Cart',
       iconClassName: 'fas fa-shopping-cart',
    },
    {
-      index: 3,
+      index: 5,
       link: '/wishlist',
       title: 'Wishlist',
       iconClassName: 'fas fa-heart',
-   },
-   {
-      index: 5,
-      link: '/',
-      title: 'Contact',
-      iconClassName: 'fas fa-phone',
    },
 ];
