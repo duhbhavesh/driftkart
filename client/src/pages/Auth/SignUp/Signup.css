@@ -1,0 +1,23 @@
+.btn-signup {
+   margin: 0;
+   margin-top: 1rem;
+   width: 100%;
+   font-weight: 600;
+}
+
+.error-text {
+   font-weight: 500;
+   color: #ff4d4f;
+}
+
+.login-link {
+   display: block;
+   font-weight: 500;
+   margin-top: 1rem;
+   text-align: center;
+}
+
+.fa-exclamation-circle {
+   margin-right: 0.5rem;
+   font-size: 1rem;
+}

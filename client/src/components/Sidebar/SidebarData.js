@@ -25,12 +25,6 @@ export const SidebarData = [
    },
    {
       index: 5,
-      link: '/history',
-      title: 'History',
-      iconClassName: 'fas fa-history',
-   },
-   {
-      index: 6,
       link: '/',
       title: 'Contact',
       iconClassName: 'fas fa-phone',

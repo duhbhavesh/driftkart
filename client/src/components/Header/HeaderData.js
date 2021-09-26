@@ -29,7 +29,7 @@ export const DesktopNavDataRight = [
    },
    {
       index: 3,
-      link: '/',
+      link: '/login',
       iconClassName: 'fas fa-user',
    },
 ];

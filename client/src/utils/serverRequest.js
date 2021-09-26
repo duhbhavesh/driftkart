@@ -1,115 +1,145 @@
 import axios from 'axios';
-import { checkItem } from '../utils/arrayFunction';
+import { checkItem, API_ENDPOINT } from '../utils/utils';
 
-export const handleFetchProducts = async (url) => {
-   const response = await axios({ method: 'GET', url: url });
+export const handleFetchProducts = async (dispatch) => {
+   try {
+      const {
+         data: { products },
+      } = await axios({
+         method: 'GET',
+         url: `${API_ENDPOINT}/api/products`,
+      });
 
-   if (response.status === 200 || response.status === 201) {
-      return response;
-   } else {
-      throw new Error('Failed to fetch products');
+      dispatch({ type: 'SET_PRODUCTS', payload: products });
+   } catch (error) {
+      console.log(error);
+   }
+};
+
+export const handleFetchCart = async (dispatch, token) => {
+   try {
+      const {
+         data: { response },
+      } = await axios({
+         method: 'GET',
+         url: `${API_ENDPOINT}/api/cart`,
+         headers: {
+            Authorization: token,
+         },
+      });
+
+      dispatch({ type: 'SET_USER_CART', payload: response });
+   } catch (error) {
+      console.log(error);
+   }
+};
+
+export const handleFetchWishlist = async (dispatch, token) => {
+   try {
+      const {
+         data: { response },
+      } = await axios({
+         method: 'GET',
+         url: `${API_ENDPOINT}/api/wishlist`,
+         headers: {
+            Authorization: token,
+         },
+      });
+
+      dispatch({ type: 'SET_USER_WISHLIST', payload: response });
+   } catch (error) {
+      console.log(error);
    }
 };
 
 export const handleAddToCartItem = async ({
-   state,
    dispatch,
    product,
-   navigate,
    notify,
+   token,
 }) => {
-   if (checkItem(state.cart, product).length === 0) {
-      notify(`${product.name} Adding to the Cart`);
-      try {
-         const { status } = await axios({
-            method: 'POST',
-            url: `https://driftkart-backend.duhbhavesh.repl.co/cart`,
-            data: {
-               _id: product.id,
-               quantity: 1,
-            },
-         });
+   try {
+      const {
+         data: { response },
+      } = await axios({
+         method: 'POST',
+         url: `${API_ENDPOINT}/api/cart/${product.id}`,
+         headers: {
+            Authorization: token,
+         },
+      });
 
-         if (status === 200 || status === 201) {
-            dispatch({ type: 'ADD_CART_ITEM', payload: product });
-         }
-      } catch (error) {
-         console.log(error);
-      }
-   } else {
-      navigate('/cart');
+      notify(`${product.name} Adding to the Cart`);
+      dispatch({ type: 'SET_USER_CART', payload: response });
+   } catch (error) {
+      console.log({ error });
    }
 };
 
-export const handleAddRemoveWishlistItem = async ({
+export const handleToggleWishList = async ({
    state,
    dispatch,
    product,
    notify,
+   token,
 }) => {
-   if (checkItem(state.wishList, product).length === 0) {
-      notify(`${product.name} Adding to the Wishlist`);
+   if (!checkItem(state.wishList, product.id)) {
       try {
-         const { status } = await axios({
+         const {
+            data: { response },
+         } = await axios({
             method: 'POST',
-            url: `https://driftkart-backend.duhbhavesh.repl.co/wishlist`,
+            url: `${API_ENDPOINT}/api/wishlist/${product.id}`,
             data: {
                _id: product.id,
             },
+            headers: {
+               Authorization: token,
+            },
          });
 
-         if (status === 200 || status === 201) {
-            dispatch({
-               type: 'ADD_WISHLIST_ITEM',
-               payload: product,
-            });
-         }
+         notify(`${product.name} Adding to the Wishlist`);
+         dispatch({ type: 'SET_USER_WISHLIST', payload: response });
       } catch (error) {
-         console.log(error);
+         console.log({ error });
       }
    } else {
-      notify(`${product.name} Removing from the Wishlist`);
       try {
-         const { status } = await axios({
+         await axios({
             method: 'DELETE',
-            url: `https://driftkart-backend.duhbhavesh.repl.co/wishlist/${product.id}`,
+            url: `${API_ENDPOINT}/api/wishlist/${product.id}`,
+            headers: {
+               Authorization: token,
+            },
          });
 
-         if (status === 200 || status === 201) {
-            dispatch({
-               type: 'REMOVE_WISHLIST_ITEM',
-               payload: product,
-            });
-         }
+         notify(`${product.name} Removing from the Wishlist`);
+         dispatch({ type: 'REMOVE_WISHLIST_ITEM', payload: product });
       } catch (error) {
-         console.log(error);
+         console.log({ error });
       }
    }
 };
 
 export const handleRemoveWishListItem = async ({
-   state,
    dispatch,
    product,
    notify,
+   token,
 }) => {
-   if (checkItem(state.wishList, product)) {
-      notify(`${product.name} Removing from the Wishlist`);
-      try {
-         const { status } = await axios({
-            method: 'DELETE',
-            url: `https://driftkart-backend.duhbhavesh.repl.co/wishlist/${product.id}`,
-         });
+   try {
+      await axios({
+         method: 'DELETE',
+         url: `${API_ENDPOINT}/api/wishlist/${product.id}`,
+         headers: {
+            Authorization: token,
+         },
+      });
 
-         if (status === 200 || status === 201) {
-            dispatch({
-               type: 'REMOVE_WISHLIST_ITEM',
-               payload: product,
-            });
-         }
-      } catch (error) {
-         console.log(error);
-      }
+      notify(`${product.name} Removing from the Wishlist`);
+      dispatch({ type: 'REMOVE_WISHLIST_ITEM', payload: product });
+   } catch (error) {
+      console.log({ error });
    }
 };
 
@@ -118,55 +148,64 @@ export const handleMoveItemToCart = async ({
    dispatch,
    product,
    notify,
+   token,
 }) => {
-   if (checkItem(state.cart, product).length === 0) {
-      notify(`${product.name} Moving to the Cart`);
+   if (!checkItem(state.cart, product.id)) {
       try {
-         const { status } = await axios({
+         const {
+            data: { response },
+         } = await axios({
             method: 'POST',
-            url: `https://driftkart-backend.duhbhavesh.repl.co/cart`,
+            url: `${API_ENDPOINT}/api/cart/${product.id}`,
             data: {
                _id: product.id,
                quantity: 1,
             },
+            headers: {
+               Authorization: token,
+            },
          });
 
-         if (status === 200 || status === 201) {
-            dispatch({ type: 'ADD_CART_ITEM', payload: product });
-            handleRemoveWishListItem({ state, dispatch, product, notify });
-         }
+         notify(`${product.name} Moving to the Cart`);
+         dispatch({ type: 'SET_USER_CART', payload: response });
+         handleRemoveWishListItem({
+            state,
+            dispatch,
+            product,
+            notify,
+            token,
+         });
       } catch (error) {
-         console.log(error);
+         console.log({ error });
       }
    } else {
       notify(`${product.name} Already present in the Cart`);
-      handleRemoveWishListItem({ state, dispatch, product, notify });
+      handleRemoveWishListItem({ state, dispatch, product, notify, token });
    }
 };
 
 export const handleRemoveCartItem = async ({
-   state,
    dispatch,
    product,
    notify,
+   token,
 }) => {
-   if (checkItem(state.cart, product)) {
-      notify(`${product.name} Removing from the Cart`);
-      try {
-         const { status } = await axios({
-            method: 'DELETE',
-            url: `https://driftkart-backend.duhbhavesh.repl.co/cart/${product.id}`,
-            data: {
-               _id: product.id,
-            },
-         });
+   try {
+      await axios({
+         method: 'DELETE',
+         url: `${API_ENDPOINT}/api/cart/${product.id}`,
+         data: {
+            _id: product.id,
+         },
+         headers: {
+            Authorization: token,
+         },
+      });
 
-         if (status === 200 || status === 201) {
-            dispatch({ type: 'REMOVE_CART_ITEM', payload: product });
-         }
-      } catch (error) {
-         console.log(error);
-      }
+      notify(`${product.name} Removing from the Cart`);
+      dispatch({ type: 'REMOVE_CART_ITEM', payload: product });
+   } catch (error) {
+      console.log({ error });
    }
 };
 
@@ -175,27 +214,37 @@ export const handleMoveItemToWishlist = async ({
    dispatch,
    product,
    notify,
+   token,
 }) => {
-   if (checkItem(state.wishList, product).length === 0) {
-      notify(`${product.name} Moving to the Wishlist`);
+   if (!checkItem(state.wishList, product.id)) {
       try {
-         const { status } = await axios({
+         const {
+            data: { response },
+         } = await axios({
             method: 'POST',
-            url: `https://driftkart-backend.duhbhavesh.repl.co/wishlist`,
+            url: `${API_ENDPOINT}/api/wishlist/${product.id}`,
             data: {
                _id: product.id,
             },
+            headers: {
+               Authorization: token,
+            },
          });
 
-         if (status === 200 || status === 201) {
-            dispatch({ type: 'ADD_WISHLIST_ITEM', payload: product });
-            handleRemoveCartItem({ state, dispatch, product, notify });
-         }
+         notify(`${product.name} Moving to the Wishlist`);
+         dispatch({ type: 'SET_USER_WISHLIST', payload: response });
+         handleRemoveCartItem({
+            state,
+            dispatch,
+            product,
+            notify,
+            token,
+         });
       } catch (error) {
-         console.log(error);
+         console.log({ error });
       }
    } else {
       notify(`${product.name} Already present in the Wishlist`);
-      handleRemoveCartItem({ state, dispatch, product, notify });
+      handleRemoveCartItem({ state, dispatch, product, notify, token });
    }
 };

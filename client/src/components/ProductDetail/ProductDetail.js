@@ -18,7 +18,7 @@ export const ProductDetail = ({ product }) => {
                   {product.inStock === true ? 'In Stock' : 'Out of Stock'}
                </p>
                <div className='product-actions'>
-                  <AddToCartButton product={product} />
+                  <AddToCartButton key={product.id} product={product} />
                   <button
                      className='btn btn-secondary'
                      onClick={() => navigate(-1)}>
