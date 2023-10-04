@@ -1,6 +1,6 @@
 .footer {
    color: #fff;
-   background-color: #00041c;
+   background-color: #141b48;
    padding: 2rem;
    font-weight: 600;
    margin-top: 4rem;
@@ -26,9 +26,13 @@
    display: flex;
    flex-direction: row;
    justify-content: center;
-   font-size: 1.2rem;
+   font-size: 1.5rem;
    text-align: center;
    margin-top: 2rem;
+}
+
+.p-font {
+   font-size: 0.8rem;
 }
 
 .footer-icons > div:not(:last-child) {

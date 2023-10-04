@@ -1,3 +1,4 @@
+import { size } from 'lodash';
 import './Footer.css';
 import { Link } from 'react-router-dom';
 
@@ -13,7 +14,7 @@ export const Footer = () => {
                      </Link>
                   </div>
                   <div className='footer-copyright'>
-                     <p className='footer-copyright-txt'>© 2021, DriftKart.</p>
+                     <p className='footer-copyright-txt'>© 2023, DriftKart.</p>
                   </div>
                </div>
                <div className='footer-icons'>
@@ -24,6 +25,7 @@ export const Footer = () => {
                         rel='noreferrer'
                         href='https://github.com/duhbhavesh'>
                         <i className='fab fa-github'></i>
+                        <p className='p-font'>Github</p>
                      </a>
                   </div>
                   <div>
@@ -33,6 +35,7 @@ export const Footer = () => {
                         rel='noreferrer'
                         href='https://twitter.com/duhbhavesh'>
                         <i className='fab fa-twitter'></i>
+                        <p className='p-font'>Twitter</p>
                      </a>
                   </div>
                   <div>
@@ -42,6 +45,7 @@ export const Footer = () => {
                         rel='noreferrer'
                         href='https://www.linkedin.com/in/bhavesh-kasturi/'>
                         <i className='fab fa-linkedin'></i>
+                        <p className='p-font'>Linkedin</p>
                      </a>
                   </div>
                </div>
