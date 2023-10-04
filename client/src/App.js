@@ -46,8 +46,8 @@ const App = () => {
             <Route path='/products' element={<Products />} />
             <Route path='/product/:id' element={<Product />} />
 
-            <PrivateRoute path='/wishlist' element={<WishList />} />
-            <PrivateRoute path='/cart' element={<Cart />} />
+            {/* <PrivateRoute path='/wishlist' element={<WishList />} />
+            <PrivateRoute path='/cart' element={<Cart />} /> */}
 
             <Route path='/signup' element={<Signup />} />
             <Route path='/login' element={<Login />} />
