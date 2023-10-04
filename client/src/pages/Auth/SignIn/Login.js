@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 import { Link, useLocation } from 'react-router-dom';
 import './Login.css';
@@ -8,8 +8,8 @@ export const Login = () => {
    const { handleUserLogin, authDispatch } = useAuth();
    const { state } = useLocation();
    const [user, setUser] = useState({
-      email: 'test@gmail.com',
-      password: 'test123',
+      email: '',
+      password: '',
    });
    const [serverError, setServerError] = useState('');
    const notify = (message) => toast.success(message);
@@ -21,6 +21,13 @@ export const Login = () => {
 
    const handleFormSubmit = async () => {
       setServerError('');
+
+      // Basic client-side validation
+      if (!user.email || !user.password) {
+         setServerError('Please fill in all fields.');
+         return;
+      }
+
       const response = await handleUserLogin(
          user,
          authDispatch,
@@ -30,10 +37,8 @@ export const Login = () => {
 
       if (response.status === 200) {
          console.log('Logged in successfully');
-      }
-
-      if (response.status !== 200) {
-         setServerError(response.response.data.error);
+      } else {
+         setServerError(response.response.data.error || 'An error occurred.');
       }
    };
 
