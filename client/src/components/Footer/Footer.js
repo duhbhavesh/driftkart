@@ -48,6 +48,30 @@ export const Footer = () => {
                         <p className='p-font'>Linkedin</p>
                      </a>
                   </div>
+
+                  <div>
+                     <a
+                        className='footer-icon'
+                        target='_blank'
+                        rel='noreferrer'
+                        href='https://www.linkedin.com/in/bhavesh-kasturi/'>
+                        <i className='fab fa-instagram'></i>
+                        <p className='p-font'>Instagram</p>
+                     </a>
+                  </div>
+
+                  <div>
+                     <a
+                        className='footer-icon'
+                        target='_blank'
+                        rel='noreferrer'
+                        href='https://www.linkedin.com/in/bhavesh-kasturi/'>
+                        <i className='fab fa-telegram'></i>
+                        <p className='p-font'>Telegram</p>
+                     </a>
+                  </div>
+
+
                </div>
             </div>
          </footer>
