@@ -5,7 +5,7 @@
    align-items: center;
    width: auto !important;
    overflow-x: hidden !important;
-}
+}  
 
 .image {
    width: 100%;
@@ -45,15 +45,38 @@
    transform: translateX(0%);
 }
 
+/* Media queries for responsiveness */
+
 @media (min-width: 600px) {
    .image {
       height: 280px;
-      min-width: 1680px;
-      width: 100%;
+      min-width: 100%;
+      width: auto;
    }
 
    .r-arrow,
    .l-arrow {
       padding: 0.8rem;
+   }
+}
+
+/* Add more media queries for other screen sizes as needed */
+@media (min-width: 870px) {
+   .image {
+      height: 280px;
+      min-width: 1680px;
+      width: auto;
+   }
+}
+
+/* Example of a smaller screen size media query */
+@media (max-width: 480px) {
+   .image {
+      height: 160px;
+   }
+
+   .r-arrow,
+   .l-arrow {  
+      font-size: 0.8rem;
    }
 }
